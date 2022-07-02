@@ -112,14 +112,23 @@
 
 <br>
 
-### 스택(stack) 이라는 메모리 영역을 사용
+## 스택(stack) 이라는 메모리 영역을 사용
 함수가 사용하는 일종의 메모장 역할
 > * 매개 변수 전달
 > * 복귀 할 주소 관리 등등 
 
+<br>
+
+## stack frame
+<img src='./Images/Assembly/stackframe.png' width=500/>
 
 
-
-
+레지스터는 다양한 용도로 사용되는데
+> 1. a, b, c, d 다양한 범용 레지스터
+> 2. 포인터 레지스터
+>
+>       * ip (Instruction Pointer): 다음 수행 명령어의 위치
+>       * sp (Stack Pointer): 현재 스택의 top 위치 (일종의 커서)
+>       * bp (Base Pointer): 스택의 상대주소 계산용 
 
 
