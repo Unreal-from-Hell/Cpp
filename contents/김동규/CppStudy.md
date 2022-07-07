@@ -276,15 +276,307 @@ bool stunOrInvincible = ((flag & 0b1010) != 0);
 
 ## const와 메모리 구조
 > 22.07.05
+- const  
+한번 정해지면 절대 바뀌지 않을 값들  
+constant의 약자인 const를 붙임 (변수를 상수화 한다고 함)  
+const를 붙였으면 초기값을 반드시 지정해야 함  
+  
+그러면 const도 바뀌지 않는 읽기 전용  
+.rodata?  
+사실 C++ 표준에서 꼭 그렇게 하라는 말이 없음  
+그냥 컴파일러 (VS) 마음  
+```
+int AIR = 0;
+int STUN = 1;
+int POLYMORPH = 2;
+int INVINCIBLE = 3;
+```
+
+- 전역 변수  
+```
+// [데이터 영역]
+// .data (초기값 있는 경우)
+int a = 2;
+
+// .bss (초기값 없는 경우)
+int b;
+
+// .rodata (읽기 전용 데이터)
+const char* msg = "Hello World";
+```
+
+- 지역 변수
+```
+int main()
+{
+    // [스택 영역]
+    int c = 3;
+}
+```
 
 ## 유의사항
 > 22.07.05
+- 1) 변수의 유효범위
+```
+// 전역 변수
+// int hp = 10;
+
+// 스택 (지역 변수)
+// { } 중괄호의 범위가 생존 범위
+``` 
+- 2) 연산 우선순위  
+연산의 우선순위를 생각하여 괄호를 주어 우선순위 지정  
+
+- 3) 타입 변환
+```
+int hp = 10;
+
+// 바구니 교체
+short hp2 = hp; // 윗쪽 비트 데이터가 짤린 상태로 저장
+float hp3 = hp; // 실수로 변환할 때 정밀도 차이가 있기 때문에 데이터 손실
+unsigned int hp4 = hp;  // 비트 단위로 보면 똑같은데, 분석하는 방법에 따라 다름
+```
+
+- 4) 사칙 연산 관련  
+곱셈 - 오버플로우  
+나눗셈 - 0 나누기 조심, 실수 관련  
 
 ## 분기문
 > 22.07.05
+- if-else문
+```
+const int ROCK = 0;
+const int PAPER = 1;
+const int SCISSORS = 2;
+
+int input = ROCK;
+
+if(input == ROCK)
+    cout << "바위를 냈습니다" << endl;
+else if(input == PAPER)
+    cout << "보를 냈습니다" << endl;
+else if(input == SCISSORS)
+    cout << "가위를 냈습니다" << endl;
+else
+    cout << "뭘 낸겁니까?" << endl;
+```
+
+- switch-case문
+```
+// 정수 계열만 넣을 수 있다.
+switch(input)
+case ROCK:
+    cout << "바위를 냈습니다" << endl; 
+    break;
+case PAPER:
+    cout << "보를 냈습니다" << endl;
+    break;
+case SCISSORS:
+    cout << "가위를 냈습니다" << endl;
+    break;
+default:
+    cout << "뭘 낸겁니까? << endl;
+    break;
+```
 
 ## 반복문
 > 22.07.05
+- while문  
+한 번만 실행하는게 아니라, 특정 조건까지 계속 반복해야 하는 상황  
+ex) 게임을 끌때까지 계속 게임을 실행해라  
+ex) 목적지에 도달할때까지 계속 이동하라  
+```
+while(조건식)
+{
+}
+```
+
+- for문
+```
+for(초기식; 조건식; 제어식)
+{
+
+}
+```
+
+- break, continue  
+루프문을 빠져 나가기 위해서는 break 
+다음 루프문으로 넘어가기 위해서는 continue  
 
 ## 연습 문제(별찍기와 구구단)
-> 22.07.05
+> 22.07.07
+- 별찍기1  
+유저들이 어떤 정수를 입력하면  
+N * N개의 별을 찍었으면 좋겠어요!  
+```
+	int a;
+	cin >> a;
+
+	for (int i = 0; i < a; i++)
+	{
+		for (int j = 0; j < a; j++)
+			cout << "*";
+		cout << endl;
+	}
+```
+- 별찍기2  
+1개부터 시작해서 순차적으로 줄마다 증가하게 수정해주세요!
+```
+	int a;
+	cin >> a;
+
+	for (int i = 0; i < a; i++)
+	{
+		for (int j = 0; j < i + 1; j++)
+			cout << "*";
+		cout << endl;
+	}
+```
+- 별찍기3  
+N개부터 시작해서 줄마다 1개씩 줄어드는 형태로!
+```
+	int a;
+	cin >> a;
+
+	for (int i = 0; i < a; i++)
+	{
+		for (int j = 0; j < a - i; j++)
+			cout << "*";
+		cout << endl;
+	}
+```
+- 구구단  
+2단부터 9단까지 구구단을 출력해주세요!
+```
+	for (int i = 2; i <= 9; i++)
+	{
+		for (int j = 1; j <= 9; j++)
+			cout << i << " * " << j << " = " << i * j << endl;
+		cout << endl;
+	}
+```
+
+## 가위-바위-보
+> 22.07.07
+- 실습
+```
+int main()
+{
+	srand(time(0));	// 시드 설정
+
+	const int SCISSORS = 1;
+	const int ROCK = 2;
+	const int PAPER = 3;
+
+	int wins = 0;
+	int total = 0;
+
+	while (true)
+	{
+		cout << "가위(1) 바위(2) 보(3) 골라주세요!" << endl;
+		cout << "> ";
+
+		if (total == 0)
+		{
+			cout << "현재 승률 : 없음" << endl;
+		}
+		else
+		{
+			int winPercentage = (wins * 100) / total;	// 승률?
+			cout << "현재 승률 : " << winPercentage << endl;
+		}
+		// 컴퓨터
+		int computerValue = rand() % 3 + 1;
+
+		// 사용자
+		int input;
+		cin >> input;
+
+		if (input == SCISSORS)
+		{
+			switch (computerValue)
+			{
+			case SCISSORS:
+				cout << "가위(님) vs 가위(컴퓨터) 비겼습니다!" << endl;
+				break;
+			case ROCK:
+				cout << "가위(님) vs 바위(컴퓨터) 졌습니다!" << endl;
+				total++;
+				break;
+			case PAPER:
+				cout << "가위(님) vs 보(컴퓨터) 이겼습니다!" << endl;
+				total++;
+				wins++;
+				break;
+			}
+		}
+		else if (input == ROCK)
+		{
+			switch (computerValue)
+			{
+			case SCISSORS:
+				cout << "바위(님) vs 가위(컴퓨터) 이겼습니다!" << endl;
+				total++;
+				wins++;
+				break;
+			case ROCK:
+				cout << "바위(님) vs 바위(컴퓨터) 비겼습니다!" << endl;
+				break;
+			case PAPER:
+				cout << "바위(님) vs 보(컴퓨터) 졌습니다!" << endl;
+				total++;
+				break;
+			}
+		}
+		else if (input == PAPER)
+		{
+			switch (computerValue)
+			{
+			case SCISSORS:
+				cout << "보(님) vs 가위(컴퓨터) 졌습니다!" << endl;
+				total++;
+				break;
+			case ROCK:
+				cout << "보(님) vs 바위(컴퓨터) 이겼습니다!" << endl;
+				total++;
+				wins++;
+				break;
+			case PAPER:
+				cout << "보(님) vs 보(컴퓨터) 비겼습니다!" << endl;
+				break;
+			}
+		}
+		else
+		{
+			break;
+		}
+	}
+}
+```
+
+## 열거형
+> 22.07.07
+- const형
+```
+const int SCISSORS = 1;
+const int ROCK = 2;
+const int PAPER = 3;
+```
+- enum
+```
+// 숫자를 지정 안하면 첫 값은 0부터 시작
+// 그 다음 값들은 이전 값 + 1
+enum ENUM_SRP
+{
+	ENUM_SCISSORS = 1,
+	ENUM_ROCK,
+	ENUM_PAPER
+};
+```
+- 전처리형
+```
+// #이 붙은거 -> 전처리 지시문
+// #include <iostream>이라는 파일을 찾아서 해당 내용을 그냥 복붙!
+// 컴파일 순서 -> 1) 전처리 2) 컴파일 3) 링크
+#define DEFINE_SISSORS 1
+```
