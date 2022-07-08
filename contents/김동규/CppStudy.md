@@ -580,3 +580,330 @@ enum ENUM_SRP
 // 컴파일 순서 -> 1) 전처리 2) 컴파일 3) 링크
 #define DEFINE_SISSORS 1
 ```
+
+## 함수 기초
+> 22.07.08
+- 함수(프로시저, 메소드 ,루틴)  
+```
+/*
+input으로 무엇을 받고, output으로 무엇을 뱉을지 정해준다
+
+반환타입 함수이름([인자 타입 매개변수])
+{
+	함수 내용
+
+	return ~~~;
+}
+*/
+```
+- 예제
+```
+// Hello World를 콘솔에 출력하는 함수를 만들어보자!
+// input : 없음 / output : 없음
+// 타입 : int float double char ~~ void
+
+void PrintHelloWorld()
+{
+	cout << "Hello World" << endl;
+}
+
+// 정수를 입력(함수) 받아서, 콘솔에 출력하는 함수를 만들어보자
+// input : int / output : 없음
+void PrintNumber(int number)
+{
+	cout << "넘겨주신 숫자는 " << number << " 입니다" << endl;
+}
+
+// 2를 곱하는 결과물을 뱉는 함수를 만들어보자
+// input : int / output : int
+int MultiplyBy2(int a)
+{
+	int b = a * 2;
+	return b;
+}
+
+// 두 숫자를 곱해서 결과물을 뱉는 함수를 만들어보자
+// input : int, int / output : int
+int MultiplyBy(int a, int b)
+{
+	int c = a * b;
+	return c;
+}
+
+int main()
+{
+	int result = MultiplyBy(3, 5);
+	PrintNumber(result);
+	// PrintHelloWorld();
+}
+```
+
+## 스택 프레임
+> 22.07.08
+- 디버깅  
+F5 -> 걸어주는 곳만 실행  
+F10 -> 프로시저(함수) 단위 실행  
+F11 -> 한 단계씩 코드 실행(한줄한줄 코드 실행)  
+
+## 지역 변수와 값 전달
+> 22.07.08
+- 전역 변수  
+함수 외부에 선언하는 변수  
+어떤 함수에서든지 사용이 가능  
+데이터 영역에 들어가는 변수  
+
+- 지역 변수  
+함수 내부에 선언하는 변수  
+스택 영역에 들어가는 변수
+
+## 호출 스택
+> 22.07.08
+- 호출 스택  
+스택 프레임에서 반환 주소값과 밀접한 관련이 있다  
+VS에서 F5를 통해 디버깅 했을 때  
+우측 하단에 있는 호출 스택을 보며  
+해당 함수가 어디에서 나왔는지 알 수 있다  
+- 함수 선언  
+추후에 함수 선언부와 함수 구현부를 나눠 코딩을 진행한다  
+C++ 같은 경우 위에서 아래로 실행되기 때문에 함수 선언을 위에서 미리 하지 않으면 빌드 시 에러가 난다  
+
+## 함수 마무리
+> 22.07.08
+- 오버로딩(중복 정의 : 함수 이름의 재사용)  
+매개변수 갯수가 다르거나  
+매개변수 타입이 다르거나 (순서가 다른걸 포함)  
+```
+int Add(int a, int b)
+{
+	int result = a + b;
+	return result;
+}
+
+float Add(float a, float b)
+{
+	float result = a + b;
+	return result;
+}
+```
+- 기본 인자값  
+인자의 값을 미리 설정 해주는 것  
+반드시 맨 끝(오른쪽)에서 설정 해주어야 함
+```
+void SetPlayerInfo(int hp, int mp, int attack, int guildId = 0)
+{ }
+```
+- 스택 오버플로우  
+너무나도 많은 함수를 호출 할 경우 스택 메모리가 고갈되어 터져버리는 상황
+
+## TextRPG
+> 22.07.08
+```
+#include <iostream>
+using namespace std;
+
+// TextRPG
+
+enum PlayerType
+{
+	PT_Knight = 1,
+	PT_Archer = 2,
+	PT_Mage = 3,
+};
+
+enum MonsterType
+{
+	MT_Slime = 1,
+	MT_Orc = 2,
+	MT_Skeleton = 3,
+};
+
+struct ObjectInfo
+{
+	int type;
+	int hp;
+	int attack;
+	int defence;
+};
+
+ObjectInfo playerInfo;
+ObjectInfo monsterInfo;
+
+void EnterLobby();
+void SelectPlayer();
+void EnterField();
+void CreateRandomMonster();
+void EnterBattle();
+
+int main()
+{
+	// 랜덤 시드 설정
+	srand(time(0));
+
+	EnterLobby();
+	return 0;
+}
+
+void EnterLobby()
+{
+	while (true)
+	{
+		cout << "------------------" << endl;
+		cout << "로비에 입장했습니다!" << endl;
+		cout << "------------------" << endl;
+
+		// 플레이어 직업 선택
+		SelectPlayer();
+
+		cout << "--------------------------" << endl;
+		cout << "(1) 필드 입장 (2) 게임 종료" << endl;
+		cout << "--------------------------" << endl;
+
+		int input;
+		cin >> input;
+
+		if (input == 1)
+		{
+			EnterField();
+		}
+		else
+		{
+			return;
+		}
+	}
+}
+
+void SelectPlayer()
+{
+	while (true)
+	{
+		cout << "------------------" << endl;
+		cout << "직업을 골라주세요!" << endl;
+		cout << "(1) 기사 (2) 궁수 (3) 법사" << endl;
+		cout << "> ";
+
+		cin >> playerInfo.type;
+
+		if (playerInfo.type == PT_Knight)
+		{
+			cout << "기사 생성중...!" << endl;
+			playerInfo.hp = 150;
+			playerInfo.attack = 10;
+			playerInfo.defence = 5;
+			break;
+		}
+		else if (playerInfo.type == PT_Archer)
+		{
+			cout << "궁수 생성중...!" << endl;
+			playerInfo.hp = 100;
+			playerInfo.attack = 15;
+			playerInfo.defence = 5;
+			break;
+		}
+		else if (playerInfo.type == PT_Mage)
+		{
+			cout << "법사 생성중...!" << endl;
+			playerInfo.hp = 80;
+			playerInfo.attack = 25;
+			playerInfo.defence = 0;
+			break;
+		}
+	}
+}
+
+void EnterField()
+{
+	while (true)
+	{
+		cout << "------------------" << endl;
+		cout << "필드에 입장했습니다!" << endl;
+		cout << "------------------" << endl;
+
+		cout << "[PLAYER] HP : " << playerInfo.hp << " / ATT : " << playerInfo.attack << " / DEF : " << playerInfo.defence << endl;
+
+		CreateRandomMonster();
+
+		cout << "------------------" << endl;
+		cout << "(1) 전투 (2) 도주" << endl;
+		cout << "> ";
+
+		int input; 
+		cin >> input;
+		if (input == 1)
+		{
+			EnterBattle();
+			if (playerInfo.hp == 0)
+				return;
+		}
+		else
+		{
+			return;
+		}
+	}
+}
+
+void CreateRandomMonster()
+{
+	// 1~3
+	monsterInfo.type = 1 + rand() % 3;
+
+	switch (monsterInfo.type)
+	{
+	case MT_Slime:
+		cout << "슬라임 생성중...!(HP:15 / ATT:5 / DEF:0)" << endl;
+		monsterInfo.hp = 15;
+		monsterInfo.attack = 5;
+		monsterInfo.defence = 0;
+		break;
+	case MT_Orc:
+		cout << "오크 생성중...!(HP:40 / ATT:10 / DEF:3)" << endl;
+		monsterInfo.hp = 40;
+		monsterInfo.attack = 10;
+		monsterInfo.defence = 3;
+		break;
+	case MT_Skeleton:
+		cout << "스켈레톤 생성중...!(HP:80 / ATT:15 / DEF:5)" << endl;
+		monsterInfo.hp = 80;
+		monsterInfo.attack = 15;
+		monsterInfo.defence = 5;
+		break;
+	}
+}
+
+void EnterBattle()
+{
+	while (true)
+	{
+		int damage = playerInfo.attack - monsterInfo.defence;
+		if (damage < 0)
+			damage = 0;
+
+		// 선빵
+		monsterInfo.hp -= damage;
+		if (monsterInfo.hp < 0)
+			monsterInfo.hp = 0;
+		
+		cout << "몬스터 남은 체력 : " << monsterInfo.hp << endl;
+		if (monsterInfo.hp == 0)
+		{
+			cout << "몬스터를 처치했습니다!" << endl;
+			return;
+		}
+
+		damage = monsterInfo.attack - playerInfo.defence;
+		if (damage < 0)
+			damage = 0;
+
+		// 반격
+		playerInfo.hp -= damage;
+		if (playerInfo.hp < 0)
+			playerInfo.hp = 0;
+
+		cout << "플레이어 남은 체력 : " << playerInfo.hp << endl;
+		if (playerInfo.hp == 0)
+		{
+			cout << "당신은 사망했습니다... GAME OVER" << endl;
+			return;
+		}
+	}
+}
+```
