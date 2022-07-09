@@ -907,3 +907,214 @@ void EnterBattle()
 	}
 }
 ```
+
+## 포인터
+> 22.07.09
+- 지금까지의 방식
+number라는 이름의 4바이트 정수 타입의 바구니를 만든다  
+number라는 변수는 스택 메모리에 할당  
+number = 1; -> number 바구니에 1이라는 숫자르 넣으라는 의미  
+따라서 스택 메모리에 있는 특정 주소(number 바구니)에  
+우리가 원하는 값을 넣은 셈  
+number는 비유하자면 메모리에 이름을 붙인 것(찰떡같이 알아들어서)  
+나쁘지 않고 편리한데, 단점은 TextRPG 원본 수정  
+```
+int number = 1;
+```
+- 포인터  
+바구니는 바구니인데...  
+[주소를 저장하는 바구니다!]  
+변수 선언할 때 * 등장했다 -> 포인터 = 주소  
+참고) 포인터라는 바구니는 8바이트(64비트) 고정 크기  
+  
+근데 남의 주소를 갖고 뭘 어떻게 하라는거지?  
+추가 문법 : [주소를 저장하는 바구니]가 가리키는 주소로 가서 무엇인가를 해라!  
+*변수이름 = 값;  
+  
+포탈을 타고 순간이동 한다고 생각해보자.  
+* -> 여러번 등장하니 헷갈리는데, 사용 시점에 따라서 구분해서 기억하자  
+변수 선언(주소를 저장하는 바구니다!)  
+사용할 때(포탈 타고 순간이동)  
+```
+// TYPE* 변수이름;
+// 일단 2가지 요소
+// - TYPE
+// - * 
+int* ptr = &number;
+```
+- TYPE은 왜붙여줄까?  
+* -> 포인터의 의미 = 주소를 저장하는 바구니 = 4/8바이트 고정 크기  
+  
+주소에 가면 뭐가 있는데?  
+ex) 결혼식 청첩장에 있는 주소 = 예식장 주소  
+ex) 명함에 있는 주소 = 회사 주소  
+* -> 포인터 ( 주소 담는 바구니)  
+
+- 타입의 불일치  
+주소를 잘못 인식해서 해당 주소를 넘어서 사용하면 데이터가 덮어씌워지는 문제가 발생  
+```
+// 다음과 같이 할 경우 해당 주소를 넘어서 덮어씌워짐
+	int number = 1;
+	__int64* ptr2 = (__int64*)&number;
+
+	*ptr2 = 0xAABBCCDDEEFF;
+```
+- 간단한 예제
+```
+void SetHp(int* hp)
+{
+	*hp = 100;
+}
+int main()
+{
+	int hp = 1;
+
+	// hp를 100으로 설정
+	SetHp(&hp);
+}
+```
+
+## 포인터 연산
+> 22.07.09
+- 1) 주소 연산자 (&)  
+해당 변수의 주소를 알려주세요  
+더 정확히 말하면 해당 변수 타입(TYPE)에 따라서 TYPE* 변환  
+```
+int* pointer = &number;
+```
+- 2) 산술 연산자 (+ -)
+```
+int*
+* : 포인터 타입이네! (8바이트) 주소를 담는 바구니!
+int : 주소를 따라가면 int(4바이트 정수형 바구니)가 있다고 가정해라!
+```
+[!] 포인터에서 +나 -등 산술 연산으로 1을 더하거나 빼면,  
+정말 '그 숫자'를 더하고 빼라는 의미가 아니라  
+한번에 TYPE의 크기만큼 이동하라!  
+정리해서 다음/이전 바구니로 이동하고 싶다 << [바구니 단위]의 이동으로 이해  
+즉, 1을 더하면 = 바구니 1개 이동시켜라  
+3을 더하면 = 바구니 3개 이동시켜라  
+```
+pointer = pointer + 1;
+pointer++;
+++pointer;	
+pointer += 1;
+```
+- 3) 간접 연산자 (*)  
+포탈을 타고 해당 주소로 이동
+```
+*pointer = 3;
+```
+- 4) 간접 멤버 연산자 (->)
+```
+* : 간접 연산자(포탈 타고 해당 주소로 이동)
+. : 구조체의 특정 멤버를 다룰 때 사용 (어셈블리 언어로 까보면 사실상 그냥 덧셈)
+-> 위 두개를 한번에 해결!
+```
+```
+struct Player
+{
+	int hp;	// +0
+	int damage;	// +4
+};
+int main()
+{
+	Player* playerPtr = &player;
+	playerPtr->hp = 200;
+	playerPtr->damage = 200;
+}
+```
+
+## 포인터 실습
+```
+#include <iostream>
+using namespace std;
+
+// 포인터 실습
+
+struct StatInfo
+{
+	int hp;	// +0
+	int attack;	// +4
+	int defence; // +8
+};
+
+void EnterLobby();
+StatInfo CreatePlayer();
+void CreateMonster(StatInfo* info);
+// 플레이어 승리 시 true, 아니면 false
+bool StartBattle(StatInfo* player, StatInfo* monster);
+
+int main()
+{
+	EnterLobby();
+}
+
+void EnterLobby()
+{
+	cout << "로비에 입장했습니다" << endl;
+
+	StatInfo player;
+	player = CreatePlayer();
+
+	StatInfo monster;
+	CreateMonster(&monster);
+
+	bool victory = StartBattle(&player, &monster);
+
+	if (victory)
+		cout << "승리!" << endl;
+	else
+		cout << "패배!" << endl;
+}
+
+StatInfo CreatePlayer()
+{
+	StatInfo ret;
+
+	cout << "플레이어 생성" << endl;
+	ret.hp = 100;
+	ret.attack = 10;
+	ret.defence = 2;
+
+	return ret;
+}
+
+void CreateMonster(StatInfo* info)
+{
+	cout << "몬스터 생성" << endl;
+	info->hp = 40;
+	info->attack = 8;
+	info->defence = 1;
+}
+
+bool StartBattle(StatInfo* player, StatInfo* monster)
+{
+	while (true)
+	{
+		int damage = player->attack - monster->defence;
+		if (damage < 0)
+			damage = 0;
+
+		monster->hp -= damage;
+		if (monster->hp < 0)
+			monster->hp = 0;
+
+		cout << "몬스터 HP : " << monster->hp << endl;
+
+		if (monster->hp == 0)
+			return true;
+		damage = monster->attack - player->defence;
+		if (damage < 0)
+			damage = 0;
+
+		cout << "플레이어 HP : " << player->hp << endl;
+
+		player->hp -= damage;
+		if (player->hp < 0)
+			player->hp = 0;
+		if (player->hp == 0)
+			return false;
+	}
+}
+```
