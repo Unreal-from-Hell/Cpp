@@ -1469,3 +1469,485 @@ int main()
 	cout << test2 << endl;
 }
 ```
+
+## 로또 번호 생성기
+> 22.07.12
+```
+#include <iostream>
+using namespace std;
+
+// 로또 번호 생성기
+
+void Swap(int& a, int& b)
+{
+	int temp = a;
+	a = b;
+	b = temp;
+}
+
+void Sort(int numbers[], int count)
+{
+	for (int i = 0; i < count; i++)
+	{
+		// i번째 값이 제일 좋은 후보라고 가정
+		int best = i;
+
+		// 다른 후보와 비교를 통해 제일 좋은 후보를 찾아나선다
+		for (int j = i + 1; j < count; j++)
+		{
+			if (numbers[j] < numbers[best])
+				best = j;
+		}
+
+		// 제일 좋은 후보와 교체하는 과정
+		if(i != best)
+			Swap(numbers[i], numbers[best]);
+	}
+}
+
+void ChooseLotto(int numbers[])
+{
+	srand((unsigned)time(0));
+
+	int count = 0;
+	while (count != 6)
+	{
+		int randValue = rand() % 45 + 1;
+
+		// 이미 찾은 값인지?
+		bool found = false;
+		for (int i = 0; i < count; i++)
+		{
+			if (numbers[i] == randValue)
+			{
+				// 이미 찾은 값
+				found = true;
+				break;
+			}
+		}
+
+		// 못 찾았으면 추가!
+		if (found == false)
+		{
+			numbers[count] = randValue;
+			count++;
+		}
+	}
+
+	Sort(numbers, 6);
+}
+
+int main()
+{
+	// 1) Swap 함수 만들기
+	int a = 1;
+	int b = 2;
+	Swap(a, b);
+
+	// 2) 정렬 함수 만들기 (작은 숫자가 먼저 오도록 정렬)
+	int numbers[6] = { 1, 42, 3, 15, 5, 6 };
+	Sort(numbers, sizeof(numbers) / sizeof(int));
+
+	// 3) 로또 번호 생성기
+	ChooseLotto(numbers);
+
+	// 행운의 로또 앱 완성!
+	for (int i = 0; i < 6; i++)
+		cout << numbers[i] << endl;
+}
+```
+
+## 다중 포인터
+> 22.07.12
+```
+#include <iostream>
+using namespace std;
+
+// 다중 포인터
+
+void SetNumber(int* a)
+{
+	*a = 1;
+}
+
+void SetMessage(const char* a)
+{
+	a = "Bye";
+}
+
+void SetMessage(const char** a)
+{
+	*a = "Bye";
+}
+
+void SetMessage2(const char*& a)
+{
+	a = "Wow";
+}
+
+int main()
+{
+	int a = 0;
+	SetNumber(&a);
+	// cout << a << endl;
+
+	// .rdata Hello주소 [H][e][l][l][o][\0]
+	// msg [ Hello주소 ] << 8바이트
+	const char* msg = "Hello";
+
+	// [매개변수][RET][지역변수(msg(Hello주소))]
+	SetMessage(msg);
+	// cout << msg << endl;
+
+	// .rdata Hello주소 [H][e][l][l][o][\0]
+	// msg[ Hello 주소] << 8바이트
+	// pp[ &msg ] << 8바이트
+	const char** pp = &msg;
+
+	// [매개변수][RET][지역변수(msg(Hello주소))][매개변수(a(&msg msg의 주소))][RET][지역변수]
+	SetMessage(&msg);
+	// cout << msg << endl;
+
+	// 다중 포인터 : 혼동스럽다?
+	// 그냥 양파까기라고 생각하면 된다
+	// *을 하나씩 까면서 타고 간다고 생각하면 편하다
+
+	// [매개변수][RET][지역변수(msg(Hello주소))][매개변수(a(&msg msg의 주소))][RET][지역변수]
+	SetMessage2(msg);
+	cout << msg << endl;
+}
+```
+
+## 다차원 배열
+> 22.07.12
+```
+#include <iostream>
+using namespace std;
+
+// 다차원 배열
+
+int main()
+{
+	int a[10] = { 1, 2, 3 };
+
+	int first[5] = { 4, 2, 3, 4, 1 };
+	int second[5] = { 1, 1, 5, 2, 2 };
+
+	int apartment2D[2][5] = { { 4, 2, 3, 4, 1 }, { 1, 1, 5, 2, 2 } };
+
+	for (int floor = 0; floor < 2; floor++)
+	{
+		for (int room = 0; room < 5; room++)
+		{
+			// apartment2D + (floor * 20) + 4 * room를 한 주소
+			int num = apartment2D[floor][room];
+			cout << num << " ";
+		}
+		cout << endl;
+	}
+
+	int apartment1D[10] = { 4, 2, 3, 4, 1, 1, 1, 5, 2, 2 };
+	for (int floor = 0; floor < 2; floor++)
+	{
+		for (int room = 0; room < 5; room++)
+		{
+			int index = (floor * 5) + room;
+			// apartment1D + (floor * 20) + 4 * room를 한 주소
+			int num = apartment1D[index];
+			cout << num << " ";
+		}
+		cout << endl;
+	}
+
+	// 2차 배열은 언제 사용할까? 대표적으로 2D 로그라이크 맵
+	int map[5][5] =
+	{
+		{ 1, 1, 1, 1, 1},
+		{ 1, 0, 0, 1, 1},
+		{ 0, 0, 0, 0, 1},
+		{ 1, 0, 0, 0, 0},
+		{ 1, 1, 1, 1, 1},
+	};
+
+	for (int y = 0; y < 5; y++)
+	{
+		for (int x = 0; x < 5; x++)
+		{
+			int info = map[y][x];
+			cout << info;
+		}
+		cout << endl;
+	}
+}
+```
+
+## 포인터 마무리
+> 22.07.12
+```
+#include <iostream>
+using namespace std;
+
+// 포인터 마무리
+
+// 1) 포인터 vs 배열 2탄
+// 2) 주의사항 -> 포인터나 참조 사용 시 주소가 끝까지 유효한지 확인해야한다
+
+int& TestRef()
+{
+	int a = 1;
+	return a;
+}
+
+int* TestPointer()
+{
+	int a = 1;
+	return &a;
+}
+
+void TestWrong(int* ptr)
+{
+	int a[100] = {};
+	a[99] = 0xAAAAAAAA;
+	*ptr = 0x12341234;
+}
+
+int main()
+{
+	// 주소를 담는 바구니
+	// 진퉁은 어딘가에 있음
+	// p는 단지 그 곳으로 워프하는 포탈
+	int* p;
+
+	// 진짜배기! 원조 데이터
+	// 닭장처럼 데이터의 묶음 (엄청 많고 거대함)
+	int arr[10] = { 1, 2, 3, 4, 5, 6, 7, 8 };
+
+	// 그런데 상당히 많은 사람들이 [배열 = 포인터]라 착각하는 경향이 있음!
+	// - [배열의 이름]은 배열의 시작 주소값을 가리키는 TYPE* 포인터로 변환 가능!
+	p = arr;
+
+	// - [TYPE형 1차원 배열]과 [TYPE*형 포인터]는 완전히 호환이 된다
+	cout << p[0] << endl;
+	cout << arr[0] << endl;
+	cout << p[5] << endl;
+	cout << arr[5] << endl;
+	cout << *p << endl;	// p[0]
+	cout << *arr << endl; // arr[0]
+	cout << *(p + 3) << endl;
+	cout << *(arr + 3) << endl;
+
+	// [매개변수][RET][지역변수] [매개변수][RET][지역변수(a)]
+	int* pointer = TestPointer();
+
+	TestWrong(pointer);
+}
+```
+
+## TextRPG3
+> 22.07.12
+```
+#include <iostream>
+using namespace std;
+
+// main
+// -EnterLobby (PlayerInfo)
+// --CreatePlayer
+// --EnterGame (MonsterInfo)
+// ---CreateMonsters
+// --- EnterBattle
+
+enum PlayerType
+{
+	PT_Knight = 1,
+	PT_Archer = 2,
+	PT_Mage = 3,
+};
+
+enum MonsterType
+{
+	MT_Slime = 1,
+	MT_Orc = 2,
+	MT_Skeleton = 3,
+};
+
+struct StatInfo
+{
+	int hp = 0;
+	int attack = 0;
+	int defence = 0;
+};
+
+void EnterLobby();
+void PrintMessage(const char* msg);
+void CreatePlayer(StatInfo* playerInfo);
+void PrintStatInfo(const char* name, const StatInfo& info);
+void EnterGame(StatInfo* playerInfo);
+void CreateMonsters(StatInfo monsterInfo[], int count);
+bool EnterBattle(StatInfo* playerInfo, StatInfo* monsterInfo);
+
+int main()
+{
+	srand((unsigned)time(nullptr));
+	EnterLobby();
+}
+
+void EnterLobby()
+{
+	while (true)
+	{
+		PrintMessage("로비에 입장했습니다");
+
+		// PLAYER!
+		StatInfo playerInfo;
+		CreatePlayer(&playerInfo);
+		PrintStatInfo("Player", playerInfo);
+
+		EnterGame(&playerInfo);
+	}
+}
+
+void PrintMessage(const char* msg)
+{
+	cout << "**********************" << endl;
+	cout << msg << endl;
+	cout << "**********************" << endl;
+}
+
+void CreatePlayer(StatInfo* playerInfo)
+{
+	bool ready = false;
+
+	while (ready == false)
+	{
+		PrintMessage("캐릭터 생성 창");
+		PrintMessage("[1]기사 [2]궁수 [3]법사");
+		cout << ">";
+
+		int input;
+		cin >> input;
+
+		switch (input)
+		{
+		case PT_Knight:
+			playerInfo->hp = 100;
+			playerInfo->attack = 10;
+			playerInfo->defence = 5;
+			ready = true;
+			break;
+		case PT_Archer:
+			playerInfo->hp = 80;
+			playerInfo->attack = 15;
+			playerInfo->defence = 3;
+			ready = true;
+			break;
+		case PT_Mage:
+			playerInfo->hp = 50;
+			playerInfo->attack = 25;
+			playerInfo->defence = 1;
+			ready = true;
+			break;
+		}
+	}
+}
+
+void PrintStatInfo(const char* name, const StatInfo& info)
+{
+	cout << "*****************" << endl;
+	cout << name << " : HP=" << info.hp << " ATT=" << info.attack << " DEF=" << info.defence << endl;
+	cout << "*****************" << endl;
+}
+
+void EnterGame(StatInfo* playerInfo)
+{
+	const int MONSTER_COUNT = 2;
+	PrintMessage("게임에 입장했습니다");
+
+	while (true)
+	{
+		StatInfo monsterInfo[MONSTER_COUNT];
+		CreateMonsters(monsterInfo, MONSTER_COUNT);
+
+		for (int i = 0; i < MONSTER_COUNT; i++)
+			PrintStatInfo("Monster", monsterInfo[i]);
+
+		PrintStatInfo("Player", *playerInfo);
+
+		PrintMessage("[1]전투 [2]전투 [3] 도망");
+		int input;
+		cin >> input;
+
+		if (input == 1 || input == 2)
+		{
+			int index = input - 1;
+			bool victory = EnterBattle(playerInfo, &(monsterInfo[index]));
+			if (victory == false)
+				break;
+		}
+	}
+}
+
+void CreateMonsters(StatInfo monsterInfo[], int count)
+{
+	for (int i = 0; i < count; i++)
+	{
+		int randValue = rand() % 3 + 1;
+
+		switch (randValue)
+		{
+		case MT_Slime:
+			monsterInfo[i].hp = 30;
+			monsterInfo[i].attack = 5;
+			monsterInfo[i].defence = 1;
+			break;
+		case MT_Orc:
+			monsterInfo[i].hp = 40;
+			monsterInfo[i].attack = 8;
+			monsterInfo[i].defence = 2;
+			break;
+		case MT_Skeleton:
+			monsterInfo[i].hp = 50;
+			monsterInfo[i].attack = 15;
+			monsterInfo[i].defence = 3;
+			break;
+		}
+	}
+}
+
+bool EnterBattle(StatInfo* playerInfo, StatInfo* monsterInfo)
+{
+	while (true)
+	{
+		int damage = playerInfo->attack - monsterInfo->defence;
+		if (damage < 0)
+			damage = 0;
+
+		monsterInfo->hp -= damage;
+		if (monsterInfo->hp < 0)
+			monsterInfo->hp = 0;
+
+		PrintStatInfo("Monster", *monsterInfo);
+
+		if (monsterInfo->hp == 0)
+		{
+			PrintMessage("몬스터를 처치했습니다");
+			return true;
+		}
+
+		damage = monsterInfo->attack - playerInfo->defence;
+		if (damage < 0)
+			damage = 0;
+
+		playerInfo->hp -= damage;
+		if (playerInfo->hp < 0)
+			playerInfo->hp = 0;
+
+		PrintStatInfo("Player", *playerInfo);
+
+		if (playerInfo->hp == 0)
+		{
+			PrintMessage("GAME Over");
+			return false;
+		}
+	}
+}
+```
