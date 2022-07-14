@@ -665,6 +665,7 @@ StatInfo 구조체가 1000바이트짜리 대형 구조체라면?
     number라는 바구니에 reference라는 다른 이름을 지어줄게
     앞으로 reference 바구니에다가 뭘 꺼내거나 넣으면
     실제 number 바구니(진퉁) 그 값을 꺼내거나 넣으면 됨
+    
 ```
     reference = 3;
 ```
