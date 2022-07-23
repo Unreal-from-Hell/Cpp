@@ -1,12 +1,10 @@
 # CppStudy
 
 ## 환경설정
-> 22.07.02
 - Visual Studio 설치
 - 새 프로젝트 생성
 
 ## 정수
-> 22.07.02
 - 주석  
 ```
 // 이렇게 주석을 달 수 있어요!  
@@ -55,7 +53,6 @@ unsigned / signed 사이의 변환
 ```
 
 ## 불리언과 부동소수점
-> 22.07.02
 - 불리언(boolean) 참/거짓  
 ```
 bool isHighLevel = true;
@@ -90,7 +87,6 @@ ex) -3.375라는 값을 저장
 실수 2개를 == 으로 비교하는 것은 지양  
 
 ## 문자와 문자열
-> 22.07.02
 - 문자  
 char : 그냥 1바이트 정수지만 '문자' 의미를 나타내기 위해 사용  
 char : 알파벳 / 숫자 문자를 나타낸다  
@@ -142,7 +138,6 @@ wchar_t str3[] = L"Hello World";
 ```
 
 ## 산술 연산
-> 22.07.02
 - 대입연산  
 a에 b를 대입하고 b를 반환하라  
 -> b라는 바구니 안에 있는 값을, a라는 바구니 안에다 복사한다  
@@ -182,7 +177,6 @@ b = (a + 1) * 3;
 ```
 
 ## 비교 연산과 논리 연산
-> 22.07.02
 - 비교 연산  
 언제 필요한가?  
 ex) 체력이 0이 되면 사망  
@@ -226,7 +220,6 @@ test = (hp > 0 || isInvincible == true);	// 생존
 ```
 
 ## 비트 연산과 비트 플래그
-> 22.07.02
 - 비트 연산  
 언제 필요한가? (사실 많이는 없음)  
 비트 단위의 조작이 필요할 때  
@@ -275,7 +268,6 @@ bool stunOrInvincible = ((flag & 0b1010) != 0);
 ```
 
 ## const와 메모리 구조
-> 22.07.05
 - const  
 한번 정해지면 절대 바뀌지 않을 값들  
 constant의 약자인 const를 붙임 (변수를 상수화 한다고 함)  
@@ -315,7 +307,6 @@ int main()
 ```
 
 ## 유의사항
-> 22.07.05
 - 1) 변수의 유효범위
 ```
 // 전역 변수
@@ -342,7 +333,6 @@ unsigned int hp4 = hp;  // 비트 단위로 보면 똑같은데, 분석하는 �
 나눗셈 - 0 나누기 조심, 실수 관련  
 
 ## 분기문
-> 22.07.05
 - if-else문
 ```
 const int ROCK = 0;
@@ -380,7 +370,6 @@ default:
 ```
 
 ## 반복문
-> 22.07.05
 - while문  
 한 번만 실행하는게 아니라, 특정 조건까지 계속 반복해야 하는 상황  
 ex) 게임을 끌때까지 계속 게임을 실행해라  
@@ -404,7 +393,6 @@ for(초기식; 조건식; 제어식)
 다음 루프문으로 넘어가기 위해서는 continue  
 
 ## 연습 문제(별찍기와 구구단)
-> 22.07.07
 - 별찍기1  
 유저들이 어떤 정수를 입력하면  
 N * N개의 별을 찍었으면 좋겠어요!  
@@ -457,7 +445,6 @@ N개부터 시작해서 줄마다 1개씩 줄어드는 형태로!
 ```
 
 ## 가위-바위-보
-> 22.07.07
 - 실습
 ```
 int main()
@@ -555,7 +542,6 @@ int main()
 ```
 
 ## 열거형
-> 22.07.07
 - const형
 ```
 const int SCISSORS = 1;
@@ -582,7 +568,6 @@ enum ENUM_SRP
 ```
 
 ## 함수 기초
-> 22.07.08
 - 함수(프로시저, 메소드 ,루틴)  
 ```
 /*
@@ -639,14 +624,12 @@ int main()
 ```
 
 ## 스택 프레임
-> 22.07.08
 - 디버깅  
 F5 -> 걸어주는 곳만 실행  
 F10 -> 프로시저(함수) 단위 실행  
 F11 -> 한 단계씩 코드 실행(한줄한줄 코드 실행)  
 
 ## 지역 변수와 값 전달
-> 22.07.08
 - 전역 변수  
 함수 외부에 선언하는 변수  
 어떤 함수에서든지 사용이 가능  
@@ -657,7 +640,6 @@ F11 -> 한 단계씩 코드 실행(한줄한줄 코드 실행)
 스택 영역에 들어가는 변수
 
 ## 호출 스택
-> 22.07.08
 - 호출 스택  
 스택 프레임에서 반환 주소값과 밀접한 관련이 있다  
 VS에서 F5를 통해 디버깅 했을 때  
@@ -668,7 +650,6 @@ VS에서 F5를 통해 디버깅 했을 때
 C++ 같은 경우 위에서 아래로 실행되기 때문에 함수 선언을 위에서 미리 하지 않으면 빌드 시 에러가 난다  
 
 ## 함수 마무리
-> 22.07.08
 - 오버로딩(중복 정의 : 함수 이름의 재사용)  
 매개변수 갯수가 다르거나  
 매개변수 타입이 다르거나 (순서가 다른걸 포함)  
@@ -696,7 +677,6 @@ void SetPlayerInfo(int hp, int mp, int attack, int guildId = 0)
 너무나도 많은 함수를 호출 할 경우 스택 메모리가 고갈되어 터져버리는 상황
 
 ## TextRPG
-> 22.07.08
 ```
 #include <iostream>
 using namespace std;
@@ -909,7 +889,6 @@ void EnterBattle()
 ```
 
 ## 포인터
-> 22.07.09
 - 지금까지의 방식
 number라는 이름의 4바이트 정수 타입의 바구니를 만든다  
 number라는 변수는 스택 메모리에 할당  
@@ -975,7 +954,6 @@ int main()
 ```
 
 ## 포인터 연산
-> 22.07.09
 - 1) 주소 연산자 (&)  
 해당 변수의 주소를 알려주세요  
 더 정확히 말하면 해당 변수 타입(TYPE)에 따라서 TYPE* 변환  
@@ -1116,5 +1094,1035 @@ bool StartBattle(StatInfo* player, StatInfo* monster)
 		if (player->hp == 0)
 			return false;
 	}
+}
+```
+
+## 참조 기초
+```
+#include <iostream>
+using namespace std;
+
+// 참조
+struct StatInfo
+{
+	int hp;
+	int attack;
+	int defence;
+};
+void CreateMonster(StatInfo* info)
+{
+	info->hp = 100;
+	info->attack = 8;
+	info->defence = 5;
+}
+void CreateMonster(StatInfo info)
+{
+	info.hp = 100;
+	info.attack = 8;
+	info.defence = 5;
+}
+
+// 값을 수정하지 않은다면, 양쪽 다 일단 문제 없음
+
+// 1) 값 전달 방식
+void PrintInfoByCopy(StatInfo info)
+{
+	cout << "HP: " << info.hp << endl;
+	cout << "ATT: " << info.attack << endl;
+	cout << "DEF: " << info.defence << endl;
+}
+
+// 2) 주소 전달 방식
+void PrintInfoByPtr(StatInfo* info)
+{
+	cout << "HP: " << info->hp << endl;
+	cout << "ATT: " << info->attack << endl;
+	cout << "DEF: " << info->defence << endl;
+}
+
+// StatInfo 구조체가 1000바이트짜리 대형 구조체라면?
+// - (값 전달) StatInfo로 넘기면 1000바이트가 복사된다
+// - (주소 전달) StatInfo*는 8바이트
+// - (참조 전달) StatInfo&는 8바이트
+
+// 값 전달처럼 편리하게 사용하고
+// 주소 전달처럼 주소값을 이용해 진퉁을 건드리는
+// 일석이조의 방식
+
+// 3) 참조 전달 방식
+void PrintInfoByRef(StatInfo& info)
+{
+	cout << "HP: " << info.hp << endl;
+	cout << "ATT: " << info.attack << endl;
+	cout << "DEF: " << info.defence << endl;
+}
+
+int main()
+{
+	// 4바이트 정수형 바구니를 사용할꺼야
+	// 앞으로 그 바구니 이름을 number라고 할거야
+	// 그러니까 number에서 뭘 꺼내거나, number에 뭘 넣는다고 하면
+	// 찰떡같이 알아듣고 해당 주소(data, stack, heap)에 1을 넣어주면 된다!
+	int number = 1;
+
+	// * : 주소를 담는 바구니
+	// int 그 바구니를 따라가면 int 데이터(바구니)가 있음
+	int* pointer = &number;
+	// pointer바구니에 있는 주소를 타고 이동해서, 그 멀리 있는 바구니에 2를 넣는다
+	*pointer = 2;
+
+	// 로우레벨(어셈블리) 관점에서 실제 작동 방식은 int*와 똑같음
+	// 실제로 실행해보면 포인터랑 100% 똑같다
+	int& reference = number;
+
+	// C++ 관점에서는 number라는 바구니에 또 다른 이름을 부여한 것
+	// number라는 바구니에 reference라는 다른 이름을 지어준다는 소리
+	// 앞으로 reference 바구니에다가 뭘 꺼내거나 넣으면,
+	// 실제 number 바구니(진퉁에다가) 그 값을 꺼내거나 넣으면 됨!
+	reference = 3;	// -> number = 3;이란 소리
+
+	// 그런데 귀찮게 또 다른 이름을 짓는 이유는?
+	// 그냥 number = 3이라고 해도 똑같은데...
+	// 참조 전달 때문!
+
+	StatInfo info;
+	CreateMonster(&info);
+
+	PrintInfoByCopy(info);
+	PrintInfoByPtr(&info);
+	PrintInfoByRef(info);
+}
+```
+
+## 포인터 vs 참조
+```
+#include <iostream>
+using namespace std;
+
+// 참조
+struct StatInfo
+{
+	int hp;
+	int attack;
+	int defence;
+};
+void CreateMonster(StatInfo* info)
+{
+	info->hp = 100;
+	info->attack = 8;
+	info->defence = 5;
+}
+
+// 특정 조건을 만족하는 몬스터를 찾는 함수
+StatInfo* FindMonster()
+{
+	// TODO : Heap 영역에서 뭔가를 찾아봄
+	// 찾았다!
+	// return monster~;
+
+	return nullptr;
+}
+
+StatInfo globalInfo;
+void PrintInfo(StatInfo* info)
+{
+	if (info == nullptr)
+		return;
+	
+	cout << "HP: " << info->hp << endl;
+	cout << "ATT: " << info->attack << endl;
+	cout << "DEF: " << info->defence << endl;
+
+	// 별 뒤에 붙인다면?
+	// StatInfo* const info
+	// info라는 바구니의 내용물(주소)을 바꿀 수 없음
+	// info는 주소값을 갖는 바구니 -> 이 주소값이 고정이다!
+
+	// 별 앞에 붙인다면?
+	// const StatInfo* info
+	// info가 '가리키고 있는' 바구니의 내용물을 바꿀 수 엇ㅁ음
+	// '원격' 바구니의 내용물을 바꿀 수 없음
+	// 
+	// info[ 주소값 ]	주소값[ 데이터 ]
+	// info = &globalInfo;
+	// info->hp = 10000;
+}
+
+void PrintInfo(const StatInfo& info)
+{
+	cout << "HP: " << info.hp << endl;
+	cout << "ATT: " << info.attack << endl;
+	cout << "DEF: " << info.defence << endl;
+}
+
+#define OUT
+void ChangeInfo(OUT StatInfo& info)
+{
+	info.hp = 1000;
+}
+
+int main()
+{
+	StatInfo info;
+
+	CreateMonster(&info);
+
+	// 포인터 vs 참조 세기의 대결
+	// 성능 : 똑같음!
+	// 편의성 : 참조가 더 좋음
+
+	// 1) 편의성 관련
+	// 편의성이 좋다는게 꼭 장점만은 아니다
+	// 포인터는 주소를 넘기니 확실하게 원본을 넘긴다는 힌트를 줄 수 있으나
+	// 참조는 자연스럽게 모르고 지나칠 수도 있다
+	// ex) 마음대로 고친다면?
+	// const를 사용해서 마음대로 고치는 부분 개선 가능
+
+	// 참고) 포인터도 const를 사용 가능
+	// *을 기준으로 앞에 붙이느냐, 뒤에 붙이느냐에 따라 의미가 다름
+
+	// 2) 초기화 여부
+	// 참조 타입은 바구니의 2번째 이름 (별칭?)
+	// -> 참조하는 대상이 없으면 안됨
+	// 반면 포인터는 그냥 어떤~ 주소라는 의미
+	// -> 대상이 실존하지 않을 수도 있음
+	// 포인터에서 '없다'는 의미로? -> nullptr 사용
+
+	StatInfo* pointer = nullptr;
+	pointer = &info;
+	PrintInfo(&info);
+	
+	StatInfo& reference = info;
+	PrintInfo(info);
+
+	// 그래서 결론은?
+	// 사실 Team By Team... 정해진 답은 없다
+	// ex) 구글에서 만든 오픈소스를 보면 거의 무조건 포인터 사용
+	// ex) 언리얼 엔진에선 reference도 애용
+	
+	ChangeInfo(OUT info);
+
+	// Bonus) 포인터로 사용하던걸 참조로 넘겨주려면?
+	PrintInfo(*pointer);
+
+	// Bonus) 참조로 사용하던걸 포인터로 넘겨주려면?
+	PrintInfo(&reference);
+}
+```
+
+## 배열 기초
+```
+#include <iostream>
+using namespace std;
+
+// 배열
+
+struct StatInfo
+{
+	int hp = 0xAAAAAAAA;
+	int attack = 0xBBBBBBBB;
+	int defence = 0xDDDDDDDD;
+};
+
+int main()
+{
+	// TYPE 이름[개수];
+
+	// 배열의 크기는 상수여야 함 (VS 컴파일러 기준)
+	const int monsterCount = 10;
+	StatInfo monsters[monsterCount];
+
+	// 여태껏 변수들의 [이름]은 바구니의 이름이었음
+	int a = 10;
+
+	// 그런데 배열은 [이름] 조금 다르게 동작한다
+	StatInfo players[10];
+
+	// 그럼 배열의 이름은 뭐지?
+	// 배열의 이름은 곧 배열의 시작 주소
+	// 정확히는 시작 위치를 가리키는 TYPE* 포인터
+	auto WhoAmI = monsters;
+
+	StatInfo* monster_0 = monsters;
+	monster_0->hp = 100;
+	monster_0->attack = 10;
+	monster_0->defence = 1;
+
+	// 포인터의 덧셈! 진짜 1을 더하라는게 아니라, StatInfo 타입 바구니 한개씩 이동하라는 의미
+	StatInfo* monster_1 = monsters + 1;
+	monster_1->hp = 200;
+	monster_1->attack = 20;
+	monster_1->defence = 2;
+
+	// 포인터와 참조는 자유자재로 변환 가능하다
+	StatInfo& monster_2 = *(monsters + 2);
+	monster_2.hp = 300;
+	monster_2.attack = 30;
+	monster_2.defence = 3;
+
+	// [주의] 이거는 완전 다른 의미다
+	// 그저 temp에 데이터를 채우는 것
+	StatInfo temp = *(monsters + 2);
+	temp.hp = 400;
+	temp.attack = 40;
+	temp.defence = 4;
+
+	// 이를 좀 더 자동화한다!
+	for (int i = 0; i < 10; i++)
+	{
+		StatInfo& monster = *(monsters + i);
+		monster.hp = (i + 1) * 100;
+		monster.attack = (i + 1) * 10;
+		monster.defence = i + 1;
+	}
+
+	// 근데 *(monsters + i) 너무 불편하고 가독성이 떨어진다.. 더 편한 방법?
+	// 인덱스!
+	// 배열은 0번부터 시작. N번째 인덱스에 해당하는 데이터에 접근하려면 배열이름[N]
+	// *(monsters + i) = monsters[i]
+
+	monsters[0].hp = 100;
+	monsters[0].attack = 10;
+	monsters[0].defence = 1;
+
+	for (int i = 0; i < 10; i++)
+	{
+		monsters[i].hp = 100 * (i + 1);
+		monsters[i].attack = 10 * (i + 1);
+		monsters[i].defence = 1 * (i + 1);
+	}
+
+	// 배열 초기화 문법 몇 가지
+	int numbers[5] = {}; // 다 0으로 밀어버린다
+	int numbers1[10] = { 1, 2, 3, 4, 5 }; // 설정한 애들은 설정한 값들로, 나머지 값들은 0으로 초기화
+	int numbers2[] = { 1,2,3,4,11,24,124,14,1 }; // 데이터 개수만큼의 크기에 해당하는 배열로 만들어준다
+
+	// 배열 요약:
+	// 1) 선언한다
+	int arr[10] = { };
+
+	// 2) 인덱스로 접근해서 사용
+	arr[1] = 1;
+	cout << arr[1] << endl;
+}
+```
+## 포인터 vs 배열
+```
+#include <iostream>
+using namespace std;
+
+// 포인터 vs 배열
+
+void Test(int a)
+{
+	a++;
+}
+
+// 배열은 함수 인자로 넘기면, 컴파일러가 알아서 포인터로 치환한다 (char [] -> char*)
+// 즉 배열의 내용 전체를 넘긴게 아니라, 시작 주소(포인터)만 넘긴 것
+void Test(char a[])
+{
+	a[0] = 'x';
+}
+
+int main()
+{
+	// test1[ 주소 ] << 8바이트
+	const char* test1 = "Hello World";
+
+	char test2[] = "Hello World";
+
+	// 포인터는 [주소를 담는 바구니]
+	// 배열은 [닭장] 그 자체로 같은 데이터끼리 붙어있는 '바구니 모음'
+	// - 다만 [배열 이름]은 '바구니 모음'의 [시작 주소]
+
+	// 배열을 함수의 인자로 넘기게 되면?
+	// test2가 바뀔까? 안바뀔까? -> 바뀐다!
+	Test(test2);
+	cout << test2 << endl;
+}
+```
+
+## 로또 번호 생성기
+```
+#include <iostream>
+using namespace std;
+
+// 로또 번호 생성기
+
+void Swap(int& a, int& b)
+{
+	int temp = a;
+	a = b;
+	b = temp;
+}
+
+void Sort(int numbers[], int count)
+{
+	for (int i = 0; i < count; i++)
+	{
+		// i번째 값이 제일 좋은 후보라고 가정
+		int best = i;
+
+		// 다른 후보와 비교를 통해 제일 좋은 후보를 찾아나선다
+		for (int j = i + 1; j < count; j++)
+		{
+			if (numbers[j] < numbers[best])
+				best = j;
+		}
+
+		// 제일 좋은 후보와 교체하는 과정
+		if(i != best)
+			Swap(numbers[i], numbers[best]);
+	}
+}
+
+void ChooseLotto(int numbers[])
+{
+	srand((unsigned)time(0));
+
+	int count = 0;
+	while (count != 6)
+	{
+		int randValue = rand() % 45 + 1;
+
+		// 이미 찾은 값인지?
+		bool found = false;
+		for (int i = 0; i < count; i++)
+		{
+			if (numbers[i] == randValue)
+			{
+				// 이미 찾은 값
+				found = true;
+				break;
+			}
+		}
+
+		// 못 찾았으면 추가!
+		if (found == false)
+		{
+			numbers[count] = randValue;
+			count++;
+		}
+	}
+
+	Sort(numbers, 6);
+}
+
+int main()
+{
+	// 1) Swap 함수 만들기
+	int a = 1;
+	int b = 2;
+	Swap(a, b);
+
+	// 2) 정렬 함수 만들기 (작은 숫자가 먼저 오도록 정렬)
+	int numbers[6] = { 1, 42, 3, 15, 5, 6 };
+	Sort(numbers, sizeof(numbers) / sizeof(int));
+
+	// 3) 로또 번호 생성기
+	ChooseLotto(numbers);
+
+	// 행운의 로또 앱 완성!
+	for (int i = 0; i < 6; i++)
+		cout << numbers[i] << endl;
+}
+```
+
+## 다중 포인터
+```
+#include <iostream>
+using namespace std;
+
+// 다중 포인터
+
+void SetNumber(int* a)
+{
+	*a = 1;
+}
+
+void SetMessage(const char* a)
+{
+	a = "Bye";
+}
+
+void SetMessage(const char** a)
+{
+	*a = "Bye";
+}
+
+void SetMessage2(const char*& a)
+{
+	a = "Wow";
+}
+
+int main()
+{
+	int a = 0;
+	SetNumber(&a);
+	// cout << a << endl;
+
+	// .rdata Hello주소 [H][e][l][l][o][\0]
+	// msg [ Hello주소 ] << 8바이트
+	const char* msg = "Hello";
+
+	// [매개변수][RET][지역변수(msg(Hello주소))]
+	SetMessage(msg);
+	// cout << msg << endl;
+
+	// .rdata Hello주소 [H][e][l][l][o][\0]
+	// msg[ Hello 주소] << 8바이트
+	// pp[ &msg ] << 8바이트
+	const char** pp = &msg;
+
+	// [매개변수][RET][지역변수(msg(Hello주소))][매개변수(a(&msg msg의 주소))][RET][지역변수]
+	SetMessage(&msg);
+	// cout << msg << endl;
+
+	// 다중 포인터 : 혼동스럽다?
+	// 그냥 양파까기라고 생각하면 된다
+	// *을 하나씩 까면서 타고 간다고 생각하면 편하다
+
+	// [매개변수][RET][지역변수(msg(Hello주소))][매개변수(a(&msg msg의 주소))][RET][지역변수]
+	SetMessage2(msg);
+	cout << msg << endl;
+}
+```
+
+## 다차원 배열
+```
+#include <iostream>
+using namespace std;
+
+// 다차원 배열
+
+int main()
+{
+	int a[10] = { 1, 2, 3 };
+
+	int first[5] = { 4, 2, 3, 4, 1 };
+	int second[5] = { 1, 1, 5, 2, 2 };
+
+	int apartment2D[2][5] = { { 4, 2, 3, 4, 1 }, { 1, 1, 5, 2, 2 } };
+
+	for (int floor = 0; floor < 2; floor++)
+	{
+		for (int room = 0; room < 5; room++)
+		{
+			// apartment2D + (floor * 20) + 4 * room를 한 주소
+			int num = apartment2D[floor][room];
+			cout << num << " ";
+		}
+		cout << endl;
+	}
+
+	int apartment1D[10] = { 4, 2, 3, 4, 1, 1, 1, 5, 2, 2 };
+	for (int floor = 0; floor < 2; floor++)
+	{
+		for (int room = 0; room < 5; room++)
+		{
+			int index = (floor * 5) + room;
+			// apartment1D + (floor * 20) + 4 * room를 한 주소
+			int num = apartment1D[index];
+			cout << num << " ";
+		}
+		cout << endl;
+	}
+
+	// 2차 배열은 언제 사용할까? 대표적으로 2D 로그라이크 맵
+	int map[5][5] =
+	{
+		{ 1, 1, 1, 1, 1},
+		{ 1, 0, 0, 1, 1},
+		{ 0, 0, 0, 0, 1},
+		{ 1, 0, 0, 0, 0},
+		{ 1, 1, 1, 1, 1},
+	};
+
+	for (int y = 0; y < 5; y++)
+	{
+		for (int x = 0; x < 5; x++)
+		{
+			int info = map[y][x];
+			cout << info;
+		}
+		cout << endl;
+	}
+}
+```
+
+## 포인터 마무리
+```
+#include <iostream>
+using namespace std;
+
+// 포인터 마무리
+
+// 1) 포인터 vs 배열 2탄
+// 2) 주의사항 -> 포인터나 참조 사용 시 주소가 끝까지 유효한지 확인해야한다
+
+int& TestRef()
+{
+	int a = 1;
+	return a;
+}
+
+int* TestPointer()
+{
+	int a = 1;
+	return &a;
+}
+
+void TestWrong(int* ptr)
+{
+	int a[100] = {};
+	a[99] = 0xAAAAAAAA;
+	*ptr = 0x12341234;
+}
+
+int main()
+{
+	// 주소를 담는 바구니
+	// 진퉁은 어딘가에 있음
+	// p는 단지 그 곳으로 워프하는 포탈
+	int* p;
+
+	// 진짜배기! 원조 데이터
+	// 닭장처럼 데이터의 묶음 (엄청 많고 거대함)
+	int arr[10] = { 1, 2, 3, 4, 5, 6, 7, 8 };
+
+	// 그런데 상당히 많은 사람들이 [배열 = 포인터]라 착각하는 경향이 있음!
+	// - [배열의 이름]은 배열의 시작 주소값을 가리키는 TYPE* 포인터로 변환 가능!
+	p = arr;
+
+	// - [TYPE형 1차원 배열]과 [TYPE*형 포인터]는 완전히 호환이 된다
+	cout << p[0] << endl;
+	cout << arr[0] << endl;
+	cout << p[5] << endl;
+	cout << arr[5] << endl;
+	cout << *p << endl;	// p[0]
+	cout << *arr << endl; // arr[0]
+	cout << *(p + 3) << endl;
+	cout << *(arr + 3) << endl;
+
+	// [매개변수][RET][지역변수] [매개변수][RET][지역변수(a)]
+	int* pointer = TestPointer();
+
+	TestWrong(pointer);
+}
+```
+
+## TextRPG3
+```
+#include <iostream>
+using namespace std;
+
+// main
+// -EnterLobby (PlayerInfo)
+// --CreatePlayer
+// --EnterGame (MonsterInfo)
+// ---CreateMonsters
+// --- EnterBattle
+
+enum PlayerType
+{
+	PT_Knight = 1,
+	PT_Archer = 2,
+	PT_Mage = 3,
+};
+
+enum MonsterType
+{
+	MT_Slime = 1,
+	MT_Orc = 2,
+	MT_Skeleton = 3,
+};
+
+struct StatInfo
+{
+	int hp = 0;
+	int attack = 0;
+	int defence = 0;
+};
+
+void EnterLobby();
+void PrintMessage(const char* msg);
+void CreatePlayer(StatInfo* playerInfo);
+void PrintStatInfo(const char* name, const StatInfo& info);
+void EnterGame(StatInfo* playerInfo);
+void CreateMonsters(StatInfo monsterInfo[], int count);
+bool EnterBattle(StatInfo* playerInfo, StatInfo* monsterInfo);
+
+int main()
+{
+	srand((unsigned)time(nullptr));
+	EnterLobby();
+}
+
+void EnterLobby()
+{
+	while (true)
+	{
+		PrintMessage("로비에 입장했습니다");
+
+		// PLAYER!
+		StatInfo playerInfo;
+		CreatePlayer(&playerInfo);
+		PrintStatInfo("Player", playerInfo);
+
+		EnterGame(&playerInfo);
+	}
+}
+
+void PrintMessage(const char* msg)
+{
+	cout << "**********************" << endl;
+	cout << msg << endl;
+	cout << "**********************" << endl;
+}
+
+void CreatePlayer(StatInfo* playerInfo)
+{
+	bool ready = false;
+
+	while (ready == false)
+	{
+		PrintMessage("캐릭터 생성 창");
+		PrintMessage("[1]기사 [2]궁수 [3]법사");
+		cout << ">";
+
+		int input;
+		cin >> input;
+
+		switch (input)
+		{
+		case PT_Knight:
+			playerInfo->hp = 100;
+			playerInfo->attack = 10;
+			playerInfo->defence = 5;
+			ready = true;
+			break;
+		case PT_Archer:
+			playerInfo->hp = 80;
+			playerInfo->attack = 15;
+			playerInfo->defence = 3;
+			ready = true;
+			break;
+		case PT_Mage:
+			playerInfo->hp = 50;
+			playerInfo->attack = 25;
+			playerInfo->defence = 1;
+			ready = true;
+			break;
+		}
+	}
+}
+
+void PrintStatInfo(const char* name, const StatInfo& info)
+{
+	cout << "*****************" << endl;
+	cout << name << " : HP=" << info.hp << " ATT=" << info.attack << " DEF=" << info.defence << endl;
+	cout << "*****************" << endl;
+}
+
+void EnterGame(StatInfo* playerInfo)
+{
+	const int MONSTER_COUNT = 2;
+	PrintMessage("게임에 입장했습니다");
+
+	while (true)
+	{
+		StatInfo monsterInfo[MONSTER_COUNT];
+		CreateMonsters(monsterInfo, MONSTER_COUNT);
+
+		for (int i = 0; i < MONSTER_COUNT; i++)
+			PrintStatInfo("Monster", monsterInfo[i]);
+
+		PrintStatInfo("Player", *playerInfo);
+
+		PrintMessage("[1]전투 [2]전투 [3] 도망");
+		int input;
+		cin >> input;
+
+		if (input == 1 || input == 2)
+		{
+			int index = input - 1;
+			bool victory = EnterBattle(playerInfo, &(monsterInfo[index]));
+			if (victory == false)
+				break;
+		}
+	}
+}
+
+void CreateMonsters(StatInfo monsterInfo[], int count)
+{
+	for (int i = 0; i < count; i++)
+	{
+		int randValue = rand() % 3 + 1;
+
+		switch (randValue)
+		{
+		case MT_Slime:
+			monsterInfo[i].hp = 30;
+			monsterInfo[i].attack = 5;
+			monsterInfo[i].defence = 1;
+			break;
+		case MT_Orc:
+			monsterInfo[i].hp = 40;
+			monsterInfo[i].attack = 8;
+			monsterInfo[i].defence = 2;
+			break;
+		case MT_Skeleton:
+			monsterInfo[i].hp = 50;
+			monsterInfo[i].attack = 15;
+			monsterInfo[i].defence = 3;
+			break;
+		}
+	}
+}
+
+bool EnterBattle(StatInfo* playerInfo, StatInfo* monsterInfo)
+{
+	while (true)
+	{
+		int damage = playerInfo->attack - monsterInfo->defence;
+		if (damage < 0)
+			damage = 0;
+
+		monsterInfo->hp -= damage;
+		if (monsterInfo->hp < 0)
+			monsterInfo->hp = 0;
+
+		PrintStatInfo("Monster", *monsterInfo);
+
+		if (monsterInfo->hp == 0)
+		{
+			PrintMessage("몬스터를 처치했습니다");
+			return true;
+		}
+
+		damage = monsterInfo->attack - playerInfo->defence;
+		if (damage < 0)
+			damage = 0;
+
+		playerInfo->hp -= damage;
+		if (playerInfo->hp < 0)
+			playerInfo->hp = 0;
+
+		PrintStatInfo("Player", *playerInfo);
+
+		if (playerInfo->hp == 0)
+		{
+			PrintMessage("GAME Over");
+			return false;
+		}
+	}
+}
+```
+
+## 문자열 연습문제
+```
+#include <iostream>
+using namespace std;
+
+// 문자열 연습 문제
+
+// 문제1) 문자열 길이를 출력하는 함수
+int StrLen(char* str)
+{
+	// str이라는 문자열의 길이를 반환
+	int count = 0;
+	
+	while (str[count] != '\0')
+		count++;
+
+	return count;
+}
+
+// 문제2) 문자열 복사 함수
+char* StrCpy(char* dest, char* src)
+{
+	/*int i = 0;
+	while (src[i] != '\0')
+	{
+		dest[i] = src[i];
+		i++;
+	}
+	dest[i] = '\0';
+
+	return dest;*/
+	
+	char* ret = dest;
+
+	while (*src != '\0')
+	{
+		*dest = *src;
+		dest++;
+		src++;
+	}
+	*dest = '\0';
+
+	return ret;
+}
+
+// 문제3) 문자열 덧붙이는 함수
+char* StrCat(char* dest, char* src)
+{
+	/*int len = StrLen(dest);
+	
+	int i = 0;
+	while (src[i] != '\0')
+	{
+		dest[len + i] = src[i];
+		i++;
+	}
+	dest[len + i] = '\0';
+
+	return dest;*/
+
+	char* ret = dest;
+	while (*dest)
+		dest++;
+	
+	while (*src)
+		*dest++ = *src++;
+
+	*dest = '\0';
+
+	return ret;
+}
+
+// 문제4) 두 문자열을 비교하는 함수
+int StrCmp(char* a, char* b)
+{
+	int i = 0;
+
+	while (a[i] != '\0' || b[i] != '\0')
+	{
+		if (a[i] > b[i])
+			return 1;
+
+		if (a[i] < b[i])
+			return -1;
+		i++;
+	}
+
+	return 0;
+}
+
+// 문제5) 문자열을 뒤집는 함수
+void ReverseStr(char* str)
+{
+	int len = StrLen(str);
+
+	for (int i = 0; i < len / 2; i++)
+	{
+		int temp = str[i];
+		str[i] = str[len - 1 - i];
+		str[len - 1 - i] = temp;
+	}
+}
+
+#pragma warning(disable: 4996)
+
+int main()
+{
+	const int BUF_SIZE = 100;
+
+	char a[BUF_SIZE] = "a";
+	char b[BUF_SIZE] = "aa";
+
+	// int len = StrLen(a);
+	// cout << len;
+	// StrCpy(b, a);
+	// StrCat(a, b);
+
+	int value = StrCmp(a, b);
+	cout << value << endl;
+}
+```
+
+## 달팽이 연습문제
+```
+#include <iostream>
+using namespace std;
+#include <iomanip>
+
+const int MAX = 100;
+int board[MAX][MAX] = {};
+int N;
+
+void PrintBoard()
+{
+	for (int y = 0; y < N; y++)
+	{
+		for (int x = 0; x < N; x++)
+		{
+			cout << setfill('0') << setw(2) << board[y][x] << " ";
+		}
+		cout << endl;
+	}
+}
+
+enum DIR
+{
+	RIGHT = 0,
+	DOWN = 1,
+	LEFT = 2,
+	UP = 3,
+};
+
+bool CanGo(int y, int x)
+{
+	if (y < 0 || y >= N)
+		return false;
+	if (x < 0 || x >= N)
+		return false;
+	if (board[y][x] != 0)
+		return false;
+	return true;
+}
+void SetBoard()
+{
+	int dir = RIGHT;
+	int num = 1;
+	int y = 0;
+	int x = 0;
+
+	int dy[] = { 0, 1, 0, -1 };
+	int dx[] = { 1, 0, -1, 0 };
+
+	while (true)
+	{
+		board[y][x] = num;
+
+		if (num == N * N)
+			break;
+		
+		int nextY = y + dy[dir];
+		int nextX = x + dx[dir];
+		
+		if (CanGo(nextY, nextX))
+		{
+			y = nextY;
+			x = nextX;
+			num++;
+		}
+		else
+		{
+			dir = (dir + 1) % 4;
+		}
+	}
+}
+
+int main()
+{
+	cin >> N;
+	
+	SetBoard();
+
+	PrintBoard();
+	
+	return 0;
 }
 ```
