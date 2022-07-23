@@ -34,8 +34,9 @@
 
 ### [이종혁](./contents/이종혁)
  * [어셈블리](./contents/이종혁/Assembly.md)
- * [코드의 흐름 제어](./contents/이종혁/If.md)
-
+ * [코드의 흐름 제어](./contents/이종혁/CodeFlow.md)
+ * [함수](./contents/이종혁/Function.md)
+ 
 ### [박주한](./contents/박주한)
 
 ### [김동규](./contents/김동규)
