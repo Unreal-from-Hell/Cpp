@@ -146,7 +146,101 @@ int main(int argc, char * argv[])
 
 <br>
 
-> 위의 두 코드 모두 hello world를 5번 출력하는 반복문이지만 다른 방식으로 표현할 수 있다.
+### ***위의 두 코드 모두 hello world를 5번 출력하는 반복문이지만 다른 방식으로 표현할 수 있다.***
+> while문의 경우 for문과 다르게 제어식을 괄호안에 넣어야하기 때문에 실수가 더 발생하는 일도 있다고 한다
+
+* break: 반복문, 조건문 중간에서 가장 가까운 반복문, 조건문을 탈출한다
+* continue: 반복문에서 다음번 반복으로 스킵한다
+
+
+<br>
+
+
+### break 예제
+
+``` cpp
+#include<iostream>
+
+using namespace std;
+
+int main(int argc, char *argv[])
+{
+    int round = 1;
+    int hp = 100;
+    int damage = 10;
+
+    // 무한 루프: 전투 시작
+    while(true)   
+    {
+        hp -= damage;
+        if(hp < 0)
+            hp = 0;   // 음수 체력을 0으로 보정
+
+        //시스템 메시지
+        cout << "Round" << round << "몬스터 체력" << hp << endl;
+
+        if(hp == 0)
+        {
+            cout << "몬스터 처치" << endl;
+            break;
+        }
+
+        if(rount == 5)
+        {
+            cout << "제한 라운드 종료" << endl;
+            break;
+        }
+        rount ++;
+        
+    }
+
+    return 0;
+}
+```
+
+<br>
+
+
+### continue 예제
+
+```cpp
+#include<iostream>
+
+using namespace std;
+
+int main(int argc, char *argv[])
+{
+    for(int count = 1; count <= 10; count++)
+    {
+        bool isEven = (count % 2) == 0;  // 짝수인지 확인
+        if(isEven)
+            continue;                    // 짝수 스킵 
+
+        cout << count << endl;
+    }
+
+    return 0;
+}
+
+```
+
+<br>
+
+
+## 열거형(enum)
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
