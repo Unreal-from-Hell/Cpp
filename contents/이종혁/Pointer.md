@@ -185,10 +185,6 @@ int * const num     // `참조한 주소 값`을 상수화
 ChangeInfo(OUT int & num);   // 수정 될 수 있음을 명시적으로 표시
 ```
 
----
 
-<br>
-
-## 배열
 
 
