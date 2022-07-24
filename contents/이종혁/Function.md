@@ -74,8 +74,9 @@ int main(int argc, char * argv[])
 }
 ```
 
-<br><br>
+---
 
+<br>
 
 ## 스택 프레임
 
@@ -98,6 +99,122 @@ int main(int argc, char * argv[])
 
 ### 지역 변수
 > 함수 내부에서 생성되어 스택에 저장되며 선언된 함수 내부에서 사용되고 함수가 종료되면 소멸된다
+
+<br>
+
+## 호출 스택
+
+
+<br>
+
+``` cpp
+# include<iostream>
+
+using namespace std;
+
+// 함수 선언
+// void Func1();
+// void Func2(int a, int b);
+// void Func3(float a);
+
+
+void Func1()
+{
+    cout << "func1" << endl;
+
+    Func2(1, 2);              // Func2를 아직 못찾음
+}
+
+void Func2(int a, int b)
+{
+    cout << "func2" << endl;
+    
+    Func3(10);                // Func3를 아직 못찾음
+}
+
+void Func3(float a)
+{
+    cout << "func3" << endl;
+}
+
+int main(int argc, char * argv [])
+{
+    Func1();
+
+    return 0;
+}
+
+```
+
+<br>
+
+> 해결책으로는 
+
+1. 함수의 위치를 바꾼다 -> 순서를 생각해서 배치해야되기 때문에 비효율적이다.
+2. 함수의 선언과 정의를 통해 해결한다. 
+
+<br>
+
+### ***디버거의 `호출 스택`을 통해서 스택의 반환 주소값을 참조해서 어떤 경로를 통해 함수가 실행되었는지 알 수 있다***
+---
+
+<br>
+
+## 함수 마무리 
+
+<br>
+
+
+### 함수 오버로딩
+> 같은 이름의 함수를 다른 인자를 사용하여 중복 정의한 것
+
+ * 하나의 함수명에 인자를 어떻게 사용하느냐에 따라서 비슷하지만 약간씩 다른 다양한 기능을 제공
+
+다음 중 하나를 만족하면 오버로딩이 가능하다
+1. 매개변수 갯수가 다르거나
+2. 매개변수 타입이 다르거나 (순서가 다른것도 포함) 
+
+<br>
+
+### ***매개변수는 같고 반환형식만 다른것은 오버로딩 할 수 없다***
+
+<br>
+
+### 예시
+``` cpp
+int Add(int a, int b)
+{
+    int result = a + b;
+    return result;
+}
+
+float Add(int a, float b)
+{
+    float result = a + b;
+    return result;
+}
+```
+
+<br>
+
+
+### 디폴트 매개변수
+> 매개변수의 기본 값을 정해주는 것으로 매개변수를 전달받지 않아도 기본 값으로 작동하게 된다
+
+ * 디폴트 매개변수는 매개변수의 중간에 존재하면 안되고 가장 오른쪽에 위치해있어야 한다 
+
+<br>
+
+### 예시
+``` cpp
+int Add(int a, int b, int c = 0)
+{
+    int result = a + b + c;
+    return result;
+}
+```
+
+<br>
 
 
 
