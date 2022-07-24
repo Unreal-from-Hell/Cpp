@@ -37,7 +37,7 @@
  * [코드의 흐름 제어](./contents/이종혁/CodeFlow.md)
  * [함수](./contents/이종혁/Function.md)
  * [TextRPG](./contents/이종혁/TextRPG.md)
- * [포인터](./contents/이종혁/Pointer.md)
+ * [포인터 와 참조](./contents/이종혁/Pointer.md)
  * [배열](./contents/이종혁/Array.md)
  * [TextRPG2](./contents/이종혁/TextRPG2.md)
 
