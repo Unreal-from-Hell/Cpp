@@ -99,5 +99,65 @@ int main(int argc, char * argv[])
 ### 지역 변수
 > 함수 내부에서 생성되어 스택에 저장되며 선언된 함수 내부에서 사용되고 함수가 종료되면 소멸된다
 
+<br>
+
+## 호출 스택
+
+
+<br>
+
+``` cpp
+# include<iostream>
+
+using namespace std;
+
+// 함수 선언
+// void Func1();
+// void Func2(int a, int b);
+// void Func3(float a);
+
+
+void Func1()
+{
+    cout << "func1" << endl;
+
+    Func2(1, 2);              // Func2를 아직 못찾음
+}
+
+void Func2(int a, int b)
+{
+    cout << "func2" << endl;
+    
+    Func3(10);                // Func3를 아직 못찾음
+}
+
+void Func3(float a)
+{
+    cout << "func3" << endl;
+}
+
+int main(int argc, char * argv [])
+{
+    Func1();
+
+    return 0;
+}
+
+```
+
+<br>
+
+> 해결책으로는 
+
+1. 함수의 위치를 바꾼다 -> 순서를 생각해서 배치해야되기 때문에 비효율적이다.
+2. 함수의 선언과 정의를 통해 해결한다. 
+
+<br>
+
+### ***디버거의 `호출 스택`을 통해서 스택의 반환 주소값을 참조해서 어떤 경로를 통해 함수가 실행되었는지 알 수 있다***
+
+<br>
+
+
 
 
