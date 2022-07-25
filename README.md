@@ -39,6 +39,7 @@
  * [TextRPG](./contents/이종혁/TextRPG.md)
  * [포인터 와 참조](./contents/이종혁/Pointer.md)
  * [배열](./contents/이종혁/Array.md)
+ * [로또 번호 생성기](./contents/이종혁/MakeLotto.md)
  * [TextRPG2](./contents/이종혁/TextRPG2.md)
 
 ### [박주한](./contents/박주한)
