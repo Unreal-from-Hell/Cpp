@@ -33,14 +33,16 @@
 ## 📚 학습 주제
 
 ### [이종혁](./contents/이종혁)
- * [어셈블리](./contents/이종혁/Assembly.md)
- * [코드의 흐름 제어](./contents/이종혁/CodeFlow.md)
- * [함수](./contents/이종혁/Function.md)
- * [TextRPG](./contents/이종혁/TextRPG.md)
- * [포인터 와 참조](./contents/이종혁/Pointer.md)
- * [배열](./contents/이종혁/Array.md)
- * [로또 번호 생성기](./contents/이종혁/MakeLotto.md)
- * [TextRPG2](./contents/이종혁/TextRPG2.md)
+ - [어셈블리](./contents/이종혁/Assembly.md)
+ - [코드의 흐름 제어](./contents/이종혁/CodeFlow.md)
+ - [함수](./contents/이종혁/Function.md)
+ - [TextRPG](./contents/이종혁/TextRPG.md)
+ - [TextRPG2](./contents/이종혁/TextRPG2.md)
+ - [포인터와 참조](./contents/이종혁/Pointer.md)
+ - [배열](./contents/이종혁/Array.md)
+ - [로또 번호 생성기](./contents/이종혁/MakeLotto.md)
+ - [연습 문제](./contents/이종혁/Practice.md)
+ - [객체지향 프로그래밍](./contents/%EC%9D%B4%EC%A2%85%ED%98%81/ObjectOriented.md)
 
 ### [박주한](./contents/박주한)
 
