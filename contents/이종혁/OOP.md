@@ -105,6 +105,104 @@ Knight(const Knight& knight)
 ---
 <br>
 
+## 클래스 상속
+> 자식 클래스(Child Class)가 부모 클래스(Parent Class)의 속성을 그대로 물려받아 사용하는 것
 
+<br>
+
+<img src = "./Images/OOP/Inheritance.png" width = 500>
+
+<br>
+
+### 상속
+``` cpp
+class Player
+{
+public:
+    Player()
+    {
+        cout << "Player() 생성자 호출" << endl;
+    }
+    Player(int hp)
+    {
+        cout << "Player(int hp) 생성자 호출" << endl;
+    }
+    ~ Player()
+    {
+        cout << "Player() 소멸자 호출" << endl;
+    }
+	void Move() { cout << "Player Move 호출" << endl; }
+	void Attack() { cout << "Player Attack 호출" << endl; }
+	void Die() { cout << "Player Die 호출" << endl; }
+	
+public:
+	int _hp;
+	int _attack;
+	int _defence;
+
+};
+
+class Knight : public Player
+{
+public:
+    Knight()           // : Player(100) -> Player(int hp)의 생성자 호출
+    // 선처리 영역
+    // 부모 클래스의 생성자가 호출된다
+    {
+        cout << "Knight() 생성자 호출" << endl;
+    }
+    Knight(int stamina)
+    {
+        cout << "Knight(int stamina) 생성자 호출" << endl;
+    }
+    ~ Knight()
+    {
+        cout << "Knight() 소멸자 호출" << endl;
+    }
+    // 후처리 영역
+    // 부모 클래스의 소멸자가 호출된다
+
+    // 함수 재정의(overriding)
+	void Move() { cout << "Knight Move 호출" << endl; }
+public:
+    int _stamina;
+};
+
+class Mage : public Player
+{
+public:
+    int _mp;
+};
+```
+
+> 위와 같이 상속을 사용할 수 있으며 상속받은 자식 클래스는 부모 클래스의 속성을 사용할 수 있다.
+
+ * 자식 클래스는 상속받은 부모 클래스의 속성 + 자기 자신의 속성을 가지게 된다
+ * 오버라이딩을 통해 부모 클래스에서 이미 정의된 함수를 재정의하여 사용할 수 있다
+ * 오버라이딩을 적용한 함수의 원형은 기존의 함수와 동일한 매개변수를 전달 받는다
+ 
+---
+<br>
+
+## 캡슐화
+
+
+---
+<br>
+
+
+## 다형성
+
+
+---
+<br>
+
+
+
+## 연산자 오버로딩
+
+
+---
+<br>
 
 

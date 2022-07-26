@@ -42,7 +42,7 @@
  - [배열](./contents/이종혁/Array.md)
  - [로또 번호 생성기](./contents/이종혁/MakeLotto.md)
  - [연습 문제](./contents/이종혁/Practice.md)
- - [객체지향 프로그래밍](./contents/%EC%9D%B4%EC%A2%85%ED%98%81/ObjectOriented.md)
+ - [객체지향 프로그래밍](./contents/%EC%9D%B4%EC%A2%85%ED%98%81/OOP.md)
 
 ### [박주한](./contents/박주한)
 
