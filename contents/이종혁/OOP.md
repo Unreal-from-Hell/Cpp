@@ -239,6 +239,19 @@ public:
 ### 오버로딩(Overloading)
 > 함수를 중복 정의 하는것으로 함수 이름의 재사용을 뜻한다
 
+```cpp
+int sum(int a, int b)
+{
+    return a + b;
+}
+
+float sum(float a, float b)
+{
+    return a + b;
+}
+
+```
+
 <br>
 
 ### 오버라이딩(Overriding)
@@ -246,10 +259,36 @@ public:
 
 <br>
 
+### 정적 바인딩(Static Binding)
+> `컴파일 타임`에 어떤 함수가 호출될지 정해지는 것
+
+ * 일반 함수는 정적 바인딩을 사용한다
+
 ``` cpp
-class Animal{}
-class Dog : public Animal {}
-class Cat : public Animal {}
+class Animal
+{
+public:
+    void Print() { cout << "Animal class" << endl}
+}
+class Dog : public Animal 
+{
+public:
+    void Print() { cout << "Dog class" << endl}
+}
+class Cat : public Animal
+{
+public:
+    void Print() { cout << "Cat class" << endl}
+}
+
+Animal * animal;
+Dog dog;
+Cat cat;
+
+animal = & a;
+animal -> show();     // animal class 
+animal = & b;
+animal -> show();     // animal class
 ```
 
 1. 강아지는 동물이다 (O)
@@ -258,15 +297,13 @@ class Cat : public Animal {}
 
 <br>
 
-### 정적 바인딩(Static Binding)
-> 컴파일 시점에 결정
-
- * 일반 함수는 정적 바인딩을 사용한다
+### ***포인터 변수의 타입인 animal 타입을 기준으로 show() 함수가 호출 된다***
+> C++은 참조하는 객체의 타입에 맞게 멤버를 호출하는게 아닌, 포인터 변수의 타입에 맞는 멤버를 호출한다 
 
 <br>
 
 ### 동적 바인딩(Dynamic Binding)
-> 실행 시점에 결정
+> `런타임`에 어떤 함수가 호출될지 정해지는 것
 
  * 가상 함수 키워드 `virtual` 사용
 
