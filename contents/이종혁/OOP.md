@@ -204,7 +204,7 @@ public:
 <br>
 
 ### ***이렇듯 `캡슐화`는 클래스는 사용하기 쉽고 프로그램의 복잡성을 줄여준다***
-> 캡슐화란 연관된 데이터와 함수를 논리적으로 묶어놓은 것이다
+> 캡슐화(Encapsulation)란 연관된 데이터와 함수를 논리적으로 묶어놓은 것이다
 
 <br>
 
@@ -225,14 +225,54 @@ public:
 1. public: public -> public, protected -> protected, private -> private
 2. protected: public -> protected, protected -> protected, private -> private
 3. private: public -> private, protected -> private, private -> private
-> 데이터에 대한 접근이 더 엄격한? 접근 지정자로 덮어쓰기 된다. 
+    * 데이터에 대한 접근이 더 엄격한? 접근 지정자로 덮어쓰기 된다. 
+    * 주로 `public`상속을 사용한다
 
 ---
 <br>
 
+## 다형성(Polymorphism)
+> 서로 다른 객체가 동일한 기능을 서로 다른 방법으로 처리할 수 있는 것을 의미한다
 
-## 다형성
+<br>
 
+### 오버로딩(Overloading)
+> 함수를 중복 정의 하는것으로 함수 이름의 재사용을 뜻한다
+
+<br>
+
+### 오버라이딩(Overriding)
+> 함수를 재정의 하는것으로 부모 클래스의 함수를 자식 클래스에서 재정의하는 것
+
+<br>
+
+``` cpp
+class Animal{}
+class Dog : public Animal {}
+class Cat : public Animal {}
+```
+
+1. 강아지는 동물이다 (O)
+2. 고양이는 동물이다 (O)
+3. 동물은 강아지다 (X)
+
+<br>
+
+### 정적 바인딩(Static Binding)
+> 컴파일 시점에 결정
+
+ * 일반 함수는 정적 바인딩을 사용한다
+
+<br>
+
+### 동적 바인딩(Dynamic Binding)
+> 실행 시점에 결정
+
+ * 가상 함수 키워드 `virtual` 사용
+
+<br>
+
+### 가상 함수 테이블(Vftable)
 
 ---
 <br>
