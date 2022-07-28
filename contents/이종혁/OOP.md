@@ -184,7 +184,7 @@ public:
 ---
 <br>
 
-## 캡슐화
+## 데이터 은닉과 캡슐화
 > 객체가 구현된 방식의 세부 정보를 사용자로부터 숨기면서 유지하는 방식으로 사용자는 객체의 공개 인터페이스를 통해 접근할 수 있도록 하는 방식
 
 <br>
@@ -210,10 +210,21 @@ public:
 일반적으로 클래스의 멤버 변수(구현 세부 정보)는 `private`로 설정하고, 멤버 함수(공개 인터페이스)는 `public`으로 설정한다
 
 ### 접근 지정자
+> 데이터에 대한 접근 권한을 지정하는 선언
 
-1. public
-2. protected
-3. private
+1. public: `공개적인`이라는 뜻으로 클래스 `외부`에서 접근할 수 있다
+2. protected: public과 private의 중간으로 클래스 외부에서는 접근할 수 없지만 해당 클래스를 상속받은 `자식 클래스`에서는 접근할 수 있다
+3. private: `사적인`이라는 뜻으로 클래스 `내부`에서만 접근할 수 있다
+
+<br>
+
+### 상속 접근 지정자
+> 상속을 받을때 부모 클래스의 접근 지정자를 어떻게 받아올 것인지에 대한 선언
+
+1. public: public -> public, protected -> protected, private -> private
+2. protected: public -> protected, protected -> protected, private -> private
+3. private: public -> private, protected -> private, private -> private
+> 데이터에 대한 접근이 더 엄격한? 접근 지정자로 덮어쓰기 된다. 
 
 ---
 <br>
