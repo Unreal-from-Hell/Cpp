@@ -180,29 +180,231 @@ public:
  * 자식 클래스는 상속받은 부모 클래스의 속성 + 자기 자신의 속성을 가지게 된다
  * 오버라이딩을 통해 부모 클래스에서 이미 정의된 함수를 재정의하여 사용할 수 있다
  * 오버라이딩을 적용한 함수의 원형은 기존의 함수와 동일한 매개변수를 전달 받는다
- 
----
-<br>
-
-## 캡슐화
-
 
 ---
 <br>
 
+## 데이터 은닉과 캡슐화
+> 객체가 구현된 방식의 세부 정보를 사용자로부터 숨기면서 유지하는 방식으로 사용자는 객체의 공개 인터페이스를 통해 접근할 수 있도록 하는 방식
 
-## 다형성
+<br>
 
+현실 세계의 리모컨을 예로 들어보자
+> 이 리모컨에는 버튼과 휠 등의 TV를 조작할 수 있는 인터페이스(interface)를 제공하지만 우리는 리모컨의 내부가 어떻게 설계되었는지, 내부에서 어떻게 동작하는지 알 필요는 없다.
+
+<br>
+
+### ***인터페이스와 구현의 분리는 리모컨의 작동 방식을 이해하지 않아도 리모컨을 사용할 수 있기때문에 매우 유용하다***
+
+<br>
+
+캡슐화된 클래스의 예시로 `std::string`, `std::cout` 등이 있다.
+> 우리는 해당 라이브러리의 클래스가 어떻게 구현되었는지 몰라도 사용할 수 있다.
+
+<br>
+
+### ***이렇듯 `캡슐화`는 클래스는 사용하기 쉽고 프로그램의 복잡성을 줄여준다***
+> 캡슐화(Encapsulation)란 연관된 데이터와 함수를 논리적으로 묶어놓은 것이다
+
+<br>
+
+일반적으로 클래스의 멤버 변수(구현 세부 정보)는 `private`로 설정하고, 멤버 함수(공개 인터페이스)는 `public`으로 설정한다
+
+### 접근 지정자
+> 데이터에 대한 접근 권한을 지정하는 선언
+
+1. public: `공개적인`이라는 뜻으로 클래스 `외부`에서 접근할 수 있다
+2. protected: public과 private의 중간으로 클래스 외부에서는 접근할 수 없지만 해당 클래스를 상속받은 `자식 클래스`에서는 접근할 수 있다
+3. private: `사적인`이라는 뜻으로 클래스 `내부`에서만 접근할 수 있다
+
+<br>
+
+### 상속 접근 지정자
+> 상속을 받을때 부모 클래스의 접근 지정자를 어떻게 받아올 것인지에 대한 선언
+
+1. public: public -> public, protected -> protected, private -> private
+2. protected: public -> protected, protected -> protected, private -> private
+3. private: public -> private, protected -> private, private -> private
+    * 데이터에 대한 접근이 더 엄격한? 접근 지정자로 덮어쓰기 된다. 
+    * 주로 `public`상속을 사용한다
 
 ---
 <br>
 
+## 다형성(Polymorphism)
+> 서로 다른 객체가 동일한 기능을 서로 다른 방법으로 처리할 수 있는 것을 의미한다
 
+<br>
 
-## 연산자 오버로딩
+### 오버로딩(Overloading)
+> 함수를 중복 정의 하는것으로 함수 이름의 재사용을 뜻한다
 
+```cpp
+int sum(int a, int b)
+{
+    return a + b;
+}
+
+float sum(float a, float b)
+{
+    return a + b;
+}
+
+```
+
+<br>
+
+### 오버라이딩(Overriding)
+> 함수를 재정의 하는것으로 부모 클래스의 함수를 자식 클래스에서 재정의하는 것
+
+<br>
+
+### 정적 바인딩(Static Binding)
+> `컴파일 타임`에 메모리를 할당
+
+ * 일반 함수 및 변수는 정적 바인딩을 사용한다
+
+``` cpp
+class Animal
+{
+public:
+    void Print() { cout << "Animal class" << endl}
+}
+class Dog : public Animal 
+{
+public:
+    void Print() { cout << "Dog class" << endl}
+}
+class Cat : public Animal
+{
+public:
+    void Print() { cout << "Cat class" << endl}
+}
+
+Animal * animal;
+Dog dog;
+Cat cat;
+
+animal = & a;
+animal -> show();     // animal class 
+animal = & b;
+animal -> show();     // animal class
+```
+
+1. 강아지는 동물이다 (O)
+2. 고양이는 동물이다 (O)
+3. 동물은 강아지다 (X)
+
+<br>
+
+### ***포인터 변수의 타입인 animal 타입을 기준으로 show() 함수가 호출 된다***
+> C++은 참조하는 객체의 타입에 맞게 멤버를 호출하는게 아닌, 포인터 변수의 타입에 맞는 멤버를 호출한다 
+
+<br>
+
+### 동적 바인딩(Dynamic Binding)
+> `런타임`에 메모리를 할당
+
+ * 가상 함수 `virtual`
+ * 동적 할당
+
+<br>
+
+### 가상 함수 테이블(Vftable)
+> 클래스에 가상함수가 하나라도 있으면 컴파일러는 가상 함수 테이블을 생성하고 해당 클래스에 vfptr이라는 가상 함수 테이블을 가르키는 함수 포인터 변수를 생성한다
+
+ * 주소를 담고있는 포인터 변수가 클래스에 추가되기 때문에 4바이트(x86)가 추가된다
+
+<br>
+
+### 컴파일 중(정적 바인딩)
+1. 가상함수가 아니면 -> 메모리 공간에 함수를 할당
+2. 가상함수면 -> 건드리지 않는다
+
+<br>
+
+### 런타임 중(동적 바인딩)
+1. 가상함수가 아니면 -> 이미 할당된 함수를 가져온다
+2. 가상함수면
+    * 재정의된 함수 X: 가상함수를 메모리에 할당
+    * 재정의된 함수 O: 재정의된 함수를 메모리에 할당
+
+<br>
+
+### 순수 가상 함수
+> 구현은 없고 `인터페이스`만 전달하는 용도로 사용하고 싶은 경우 
+
+``` cpp
+virtual void Vattack() = 0 ;  // 순수 가상 함수 정의
+```
+
+순수 가상 함수가 1개 이상 포함되면 해당 클래스는 `추상 클래스`로 간주한다
+ * 해당 클래스는 직접적으로 객체를 만들 수 없다
+ * 상속 받은 자식 클래스는 순수 가상 함수를 재정의 해야만 사용할 수 있다
 
 ---
 <br>
+
+## 멤버 초기화 리스트(member Initalizer list)
+> 상속 관계에서 원하는 부모 생성자 호출 시 필요하다
+
+
+멤버 변수를 초기화 방법에는 다양한 방법이 있는데
+
+1. 생성자 본문에서 초기화
+2. 초기화 리스트
+3. C++11 문법
+
+<br>
+
+### ***멤버 초기화 리스트는 선언과 동시에 초기화하는 방법이다***
+> 일반 변수는 별 차이 없으나 멤버 타입이 클래스인 경우 성능 차이가 발생한다
+
+<br>
+
+### 초기화 리스트 사용
+```cpp
+class Player()
+{
+
+}
+class Knight() : public Player
+{
+public:
+    Kinght() : Player(1), _hp(100), _inventory(20), _hpRef(_hp), _hpConst(100)
+    //  선처리 영역
+    // inventory() 생성자 호출
+    {
+        // _hp = 100;
+        // _inventory = Inventory(20);
+        // 선처리 영역에서 기본생성자 호출 후
+        // Inventory(int size) 생성자 호출 후 대입
+    }
+public:
+    int _hp;
+    Inventory _inventory;
+    int & _hpRef;
+    const int _hpConst;
+}
+class Inventory()
+{
+public:
+    int _size ;
+public:
+    Inventory(){ cout << "Inventory()" << endl;}
+    Inventory(int size){ cout << "Inventory(int size)" << endl;}
+    ~Inventory(){ cout << "~ Inventory()" << endl;}
+}
+
+```
+
+
+<br>
+
+* 멤버 초기화 리스트를 사용하면 값을 할당하지 않고 멤버 변수를 초기화할 수 있다
+* 생성자 본문에서 값을 할당하는 것보다 성능이 더 우수하다
+* const 또는 reference 변수와 같이 초기값이 필요한 멤버를 초기화할 수 있는 유일한 방법이다
+* 멤버 초기화 리스트는 기본 자료형 변수와 클래스 자체인 멤버 모두에서 잘 작동한다
+
 
 
