@@ -345,10 +345,65 @@ virtual void Vattack() = 0 ;  // 순수 가상 함수 정의
 ---
 <br>
 
-## 연산자 오버로딩
+## 멤버 초기화 리스트(member Initalizer list)
+> 상속 관계에서 원하는 부모 생성자 호출 시 필요하다
 
 
----
+멤버 변수를 초기화 방법에는 다양한 방법이 있는데
+
+1. 생성자 본문에서 초기화
+2. 초기화 리스트
+3. C++11 문법
+
 <br>
+
+### ***멤버 초기화 리스트는 선언과 동시에 초기화하는 방법이다***
+> 일반 변수는 별 차이 없으나 멤버 타입이 클래스인 경우 성능 차이가 발생한다
+
+<br>
+
+### 초기화 리스트 사용
+```cpp
+class Player()
+{
+
+}
+class Knight() : public Player
+{
+public:
+    Kinght() : Player(1), _hp(100), _inventory(20), _hpRef(_hp), _hpConst(100)
+    //  선처리 영역
+    // inventory() 생성자 호출
+    {
+        // _hp = 100;
+        // _inventory = Inventory(20);
+        // 선처리 영역에서 기본생성자 호출 후 복사생성자 호출 
+    }
+public:
+    int _hp;
+    Inventory _inventory;
+    int & _hpRef;
+    const int _hpConst;
+}
+class Inventory()
+{
+public:
+    int _size ;
+public:
+    Inventory(){ cout << "Inventory()" << endl;}
+    Inventory(int size){ cout << "Inventory(int size)" << endl;}
+    ~Inventory(){ cout << "~ Inventory()" << endl;}
+}
+
+```
+
+
+<br>
+
+* 멤버 초기화 리스트를 사용하면 값을 할당하지 않고 멤버 변수를 초기화할 수 있다
+* 생성자 본문에서 값을 할당하는 것보다 성능이 더 우수하다
+* const 또는 reference 변수와 같이 초기값이 필요한 멤버를 초기화할 수 있는 유일한 방법이다
+* 멤버 초기화 리스트는 기본 자료형 변수와 클래스 자체인 멤버 모두에서 잘 작동한다
+
 
 
