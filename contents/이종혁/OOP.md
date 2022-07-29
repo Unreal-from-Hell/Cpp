@@ -377,7 +377,8 @@ public:
     {
         // _hp = 100;
         // _inventory = Inventory(20);
-        // 선처리 영역에서 기본생성자 호출 후 복사생성자 호출 
+        // 선처리 영역에서 기본생성자 호출 후
+        // Inventory(int size) 생성자 호출 후 대입
     }
 public:
     int _hp;
