@@ -182,14 +182,14 @@ delete weapon;
 <br>
 
 1. 부모 클래스 -> 자식 클래스 형 변환
- * 암시적 형 변환 불가능
+ * 문법적으로 불가능하기 때문에 암시적 형 변환 불가능
  * 메모리 크기가 작은 것에서 큰 것으로 타입 변환은 위험하다
  * 명시적 타입 변환은 항상 조심해야 한다
 
 <br>
 
 2. 자식 클래스 -> 부모 클래스 형 변환 
- * 암시적 형 변환 가능
+ * 문법적으로 가능하기 때문에 암시적 형 변환 가능
 
 <br>
 
@@ -197,5 +197,56 @@ delete weapon;
 
 <br>
 
+``` cpp
+Item * inventory[20] = {}; 
+
+srand((unsigned int)time(null));
+
+for(int i = 0; i < 20; i++)
+{
+    for randValue = rand() % 2;
+    switch(randValue)
+    {
+    case 0:
+        inventory[i] = new Weapon();   // 자식 -> 부모 형변환
+        break;
+    case 1:
+        inventory[i] = new Armor();    // 자식 -> 부모 형변환
+        break;
+    }
+}
+
+for(int i = 0; i < 20; i++)
+{
+    Item  * item = inventory[i];
+    if(item == nullptr)
+        continue;
+    if(item->_itemType == IT_WEAPON)
+    {
+        weapon* weapon = (Weapon *)item;  // 부모 -> 자식 형변환
+    }
+}
+
+for(int i = 0; i < 20; i++)
+{
+
+    if(item->_itemType == IT_WEAPON)
+    {
+        weapon* weapon = (Weapon *)item;  // 부모 -> 자식 형변환
+        delete weapon;                    // 메모리 할당 해제, 소멸자 호출
+    }
+    else
+    {
+        Armor* armor = (Armor *)item;  // 부모 -> 자식 형변환
+        delete armor;                  // 메모리 할당 해제, 소멸자 호출
+    }
+    // delete item;                      소멸자를 가상함수로 선언했을 경우
+}
+
+```
+
+> `명시적 형변환`은 위와 같은 상황에서 명시적 형변환을 사용해 동적 할당을 해제해주어야 하기 때문에 필요하다
+
+  * 하지만 소멸자를 `가상 함수`로 선언해주면 형변환 없이 자기 자신의 소멸자를 호출하게 된다
 
 
