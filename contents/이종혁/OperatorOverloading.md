@@ -32,7 +32,7 @@ public:
 public:
     int _x;
     int _y;
-}
+};
 
 // 전역 함수
 Position::operator+(int a, const Position & arg)

@@ -16,7 +16,10 @@
 <br>
 
 ``` cpp
-class Knight{}
+class Knight
+{
+
+};
 
 void * num = malloc(20);
 

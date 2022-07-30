@@ -57,7 +57,7 @@ public:
         _posX = 0;
         _posY = 0;
     }
-}
+};
 ```
 <br>
 
@@ -269,17 +269,19 @@ class Animal
 {
 public:
     void Print() { cout << "Animal class" << endl}
-}
+};
+
 class Dog : public Animal 
 {
 public:
     void Print() { cout << "Dog class" << endl}
-}
+};
+
 class Cat : public Animal
 {
 public:
     void Print() { cout << "Cat class" << endl}
-}
+};
 
 Animal * animal;
 Dog dog;
@@ -367,7 +369,7 @@ virtual void Vattack() = 0 ;  // 순수 가상 함수 정의
 class Player()
 {
 
-}
+};
 class Knight() : public Player
 {
 public:
@@ -394,7 +396,7 @@ public:
     Inventory(){ cout << "Inventory()" << endl;}
     Inventory(int size){ cout << "Inventory(int size)" << endl;}
     ~Inventory(){ cout << "~ Inventory()" << endl;}
-}
+};
 
 ```
 

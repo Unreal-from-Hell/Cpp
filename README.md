@@ -45,7 +45,7 @@
  - [객체지향 프로그래밍](./contents/%EC%9D%B4%EC%A2%85%ED%98%81/OOP.md)
  - [연산자 오버로딩](./contents/이종혁/OperatorOverloading.md)
  - [동적 할당](./contents/이종혁/DynamicAllocation.md)
- - [타입 변환](./contents/이종혁/TypeConversion.md)
+ - [타입 변환](./contents/이종혁/TypeCasting.md)
  
 ### [박주한](./contents/박주한)
 * [데이터~함수](./contents/박주한/CPP-~Pointer.md)
