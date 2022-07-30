@@ -16,7 +16,10 @@
 <br>
 
 ``` cpp
-class Knight{}
+class Knight
+{
+
+};
 
 void * num = malloc(20);
 
@@ -76,5 +79,6 @@ delete[] array3;
 1. malloc은 `함수`고 new는 `연산자`이다
 2. 배열과 같이 N개의 데이터를 같이 할당하려면 new가 편리하다
 3. ***new는 생성타입이 클래스일 경우 `생성자와 소멸자를 호출`해준다***
+
 
 
