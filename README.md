@@ -47,6 +47,7 @@
  - [동적 할당](./contents/이종혁/DynamicAllocation.md)
  - [타입 변환](./contents/이종혁/TypeCasting.md)
  - [얕은 복사와 깊은 복사](./contents/이종혁/Copy.md)
+ - [C++ Casting](./contents/이종혁/Casting.md)
  
 ### [박주한](./contents/박주한)
 * [데이터~함수](./contents/박주한/CPP-~Pointer.md)
