@@ -50,7 +50,8 @@
  - [C++ Casting](./contents/이종혁/Casting.md)
  - [TextRPG(OOP)](./contents/이종혁/TextRPG(OOP).md)
  - [전방 선언](./contents/이종혁/ForwardDecalaration.md)
- 
+ - [함수 포인터](./contents/이종혁/FunctionPointer.md)
+
 ### [박주한](./contents/박주한)
 * [데이터~함수](./contents/박주한/CPP-~Pointer.md)
 * [참조,포인터, 배열](./contents/박주한/Reference%26Pointer.md)
