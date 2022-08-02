@@ -58,12 +58,18 @@ ostream& operator<<(ostream& os, const knight& k)
 
 // 템플릿 특수화
 template<>
-void Print(Knight a)             // knight 타입에만 한해서 호출된다
+void Print(Knight a)             // knight 타입의 템플릿 함수 특수화
 {
     cout << "Knight" << endl;
     cout << a._hp << endl;
 }
 ```
+
+> 함수 템플릿이 각각의 타입에 대해 처음으로 호출될 때, C++ 컴파일러는 해당 타입의 인스턴스를 생성한다
+
+ * 생성된 인스턴스는 해당 타입에 대한 특수화된 템플릿 함수이다
+ * 특정 타입에 대한 명시적 특수화를 제공하여 해당 타입에 대해 특별한 동작을 정의할 수 있다
+
 
 ---
 <br>
@@ -71,20 +77,20 @@ void Print(Knight a)             // knight 타입에만 한해서 호출된다
 ## 클래스 템플릿(Class Template)
 
 ``` cpp
-template<typename T>
+template<typename T, int SIZE>
 class Randombox
 {
 public:
     T GetRandomData()
     {
-        T idx = rand() % 10;
+        int idx = rand() % SIZE;
         return _data[idx];
     }
 public:
-    T _data[10];
+    T _data[SIZE];
 };
 
-RandomBox<int> rb1;
+RandomBox<int, 10> rb1;
 for(int i = 0; i < 10; i++)
 {
     rb1._data[i] = i;
@@ -92,15 +98,26 @@ for(int i = 0; i < 10; i++)
 int value1 = rb1.GetRandomData()
 cout << value1 << endl;
 
-
-
-RandomBox<float> rb2;
-for(int i = 0; i < 10; i++)
+RandomBox<float, 20> rb2;
+for(int i = 0; i < 20; i++)
 {
     rb2._data[i] = i + 0.5f;
 }
 float value2 = rb1.GetRandomData()
 cout << value2 << endl;
 
+// 템플릿 특수화
+template<int SIZE>
+class Randombox<double, SIZE>         // double 버전의 클래스 템플릿 특수화
+{
+public:
+    T GetRandomData()
+    {
+        int idx = rand() % SIZE;
+        return _data[idx];
+    }
+public:
+    double _data[SIZE];
+};
 ```
 
