@@ -184,4 +184,131 @@ public:
 
 public: 누구나 사용가능(pulic -> public, protected -> protected)  
 protected: 나의 상속 받은 자손만 사용 가능  (public -> protected, protected -> protected)  
-private : 나만 사용할꺼 << class Car 내부에서만!(public -> private, protected -> private)  
+private : 나만 사용할꺼 << class Car 내부에서만!(public -> private, protected -> private)   
+
+- 다형성  
+겉은 똑같은데 기능이 다르게 동작한다  
+>오버로딩 함수 중복 정의 = 함수 이름의 재사용  
+>오버라이딩 = 재정의 부모클래스의 함수를 자식 클래스에서 재정의  
+
+-정적 바이딩   
+컴파일 시점에서 결정  
+일반 함수들은 정적 바이딩 사용  
+
+
+-동적 바인딩  
+실행 시점에 결정  
+  
+가상 함수(virtual function)  
+함수 앞에 virtual 붙임  
+가상 함수는 재정의를 하더라도 가상 함수  
+```
+virtual vod Move() {cout << "Move Player"}
+```
+  
+>가상 함수 테이블(vftable)
+>클래스에 가상함수가 있으면 컴파일러는 가상 함수 테이블을 생성, 해당 클래스에 vfptr이라는 가상 함수 테이블을 가르키는 함수 포인터 변수를 생성
+>>해당 클래스는 직접적으로 객체를 만들 수 없다  
+>>상속 받은 자식 클래스는 순수 가상 함수를 재정의 해야만 사용 가능  
+  
+- 순수 가상 함수: 구현은 없고 '인터페이스'만 전달하고 싶은 경우  
+순수 가상 함수가 1개 이상 포함되면 해당 클래스는 추상 클래스로 간주
+
+```
+virtual vod VAttack() = 0;
+```
+
+# 초기화 리스트  
+초기화해야하는 이유  
+>버그 예방  
+> 포인터 등 주소값이 연루되어 있을 경우
+    
+멤버 변수 초기화 다양한 문법이 존재  
+>생성자 본문에서 초기화
+>초기화 리스트
+>C++11 문법
+
+>일단 상속 관계에서 원하는 부모 생성자 호출할 떄 필요
+> 생성자 내에서 초기화 vs 초기화 리스트 
+>일반 변수는 별 차이 없음  
+>멤버 타입이 클래스인 경우 차이가 난다  
+``` c++
+class Player()
+{
+
+};
+class Knight() : public Player
+{
+public:
+    Kinght() : Player(1), _hp(100), _inventory(20), _hpRef(_hp), _hpConst(100)
+    //  선처리 영역
+    // inventory() 생성자 호출
+    {
+        // _hp = 100;
+        // _inventory = Inventory(20);
+        // 선처리 영역에서 기본생성자 호출 후
+        // Inventory(int size) 생성자 호출 후 대입
+    }
+public:
+    int _hp;
+    Inventory _inventory;
+    int & _hpRef;
+    const int _hpConst;
+}
+class Inventory()
+{
+public:
+    Inventory(){ cout << "Inventory()" << endl;}
+    Inventory(int size){ cout << "Inventory(int size)" << endl;}
+    ~Inventory(){ cout << "~ Inventory()" << endl;}
+public:
+    int _size = 10 ;
+};
+```
+> 선처리 영역에서 const 또는 reference 변수와 같이 초기값이 필요한 멤버를 초기화할 수 있음  
+
+# 연산자 오버로딩 
+- 연산자 오버로딩 vs 함수  
+연산자는 피연산자의 개수/타입이 고정 되어 있음  
+  
+연산자 오버로딩?  
+일단 [연산자 함수]를 정의해야함  
+함수도 멤버함수 vs 전역함수가 존재하는것처럼, 연산자 함수도 두가지 방식으로 만들 수 있음  
+  
+- 멤버 연산자 함수 version
+> a op b 형태에서 왼쪽으로 기준으로 실행됨(a가 클래스여야 가능. a를 기준 피연산자 라고 함)
+> a가 클래스가 아니면 사용 불가 
+``` c++ 
+class Position
+{
+public:
+    // 멤버 함수
+    Position operator+(const Position & arg)
+    {
+        Position pos;
+        pos._x = _x + arg._x;
+        pos._y = _y + arg._y;
+        return pos;
+    }
+public:
+    int _x;
+    int _y;
+```
+
+- 전역 연산자 함수 version
+> a op b 형태라면 , a, b 모두를 연산자 함수의 피연산자로 만듦
+>대입 연산자로 만들지 못함  
+
+``` c++
+Position operator+(int a, const Position & b)
+{
+    Position ret;
+    ret._x = b._x + a;
+    ret._y = b._y + a;
+
+    return ret;
+}
+```
+
+> 그럼 무엇이 더 좋은가? 그런거 없음, 심지어 둘 중 하나만 지원하는 경우도 있끼 때문.
+>대표적으로 대입 연산자(a=b)는 전역 연산자로 만들지 못한다.
