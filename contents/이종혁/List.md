@@ -12,16 +12,67 @@
 
 <br>
 
-
-
-
-<br>
-
-### 리스트 사용
+### 리스트의 선언과 생성자
 > 선언은 list<TYPE> 변수 이름 으로 사용한다
 
 ``` cpp
+list<int> li;     // 비어있는 list 컨테이너 생성
+
+list<int> li2(10);   // defalut(0)로 초기화된 원소 10개를 가진 list 생성
+
+list<int> li3(3, 2); // 2로 초기화된 원소 3개를 가진 list 생성
+
+list<int> li4(li2);  // li2를 li4로 복사 -> 복사생성자
+```
+<br>
+
+## list의 멤버 함수
+
+<br>
+
+### 데이터 삽입
+```cpp
 list<int> li;
+for (int i = 0; i < 100; i++)
+    li.push_back(i);      // 리스트의 뒤에 삽입
+// li.push_front();       // 리스트의 앞에 삽입
+```
 
+<br>
 
+### 리스트의 크기 반환
+```cpp
+int size = li.size();     // 리스트의 크기 반환
+```
+<br>
+
+### 데이터 삭제 및 반환
+
+``` cpp
+int first = li.front();              // 첫 번째 데이터 반환
+int last = li.back();                // 마지막 데이터 반환
+
+li.pop_front();              // 첫 번째 원소 제거
+li.pop_back();               // 마지막 원소 제거
+```
+<br>
+
+### 리스트의 반복자
+``` cpp
+list<int>::iterator itBegin = li.begin();  // 시작위치의 반복자 반환
+list<int>::iterator itEnd = li.end();  // 마지막 위치의 반복자 반환
+
+// 반복자를 이용한 리스트 순환
+for (list<int>::iterator it = li.begint(); it != li.end(); ++it )
+{
+    cout << *it << endl;
+}
+```
+<br>
+
+```cpp
+li.insert(itbegin, 100);  // 해당 위치에 값을 삽입
+li.erase(li.begin());
+li.pop_front();
+li.remove(10); // value와 같은 값을 모두 삭제
 ```
