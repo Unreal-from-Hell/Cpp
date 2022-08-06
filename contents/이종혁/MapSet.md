@@ -145,4 +145,49 @@ set<int> m2(m1);     // m1을 m2에 복사 -> 복사생성자
 > map과 set에서 key의 중복을 허용하는 노드 기반의 연관 컨테이너로 자가 균형 이진트리다
 
  * idx를 통한 임의접근이 불가능해 insert를 통해서만 데이터 삽입이 가능하다
- 
+
+<br>
+
+### multimap의 검색과 순회
+``` cpp
+multimap<int, int> mm;
+
+pair<multimap<int, int>::iterator, multimap<int, int>::iterator> itPair;
+itPair = mm.equal_range(1);     // 1의 key를 갖는 시작과 마지막 범위의 iterator 반환
+
+for(multimap<int, int>::iterator it = itPair.first; it != itPair.second; ++it)
+{
+    cout << it->first << " " << it->second << endl;
+}
+
+multimap<int, int>::iterator itBegin = mm.lower_bound(1);      // 첫 번째 1의 iterator 반환
+multimap<int, int>::iterator itEnd = mm.upper_bound(1);        // 마지막 1의 iterator 반환
+
+for(multimap<int, int>::iterator it = itbegin; it != itEnd; ++it)
+{
+    cout << it->first << " " << it->second << endl;
+}
+```
+
+<br>
+
+### Multiset의 검색과 순회
+``` cpp
+multiset<int> ms;
+
+pair<multiset<int>::iterator, multiset<int>::iterator> itPair;
+itPair = ms.equal_range(1);   // 1의 key를 갖는 시작과 마지막 범위의 iterator 반환
+
+for(multiset<int, int>::iterator it = itPair.first; it != itPair.second; ++it)
+{
+    cout << it->first << " " << it->second << endl;
+}
+
+multiset<int>::iterator itBegin = ms.lower_bound(1);      // 첫 번째 1의 iterator 반환
+multiset<int>::iterator itEnd = ms.upper_bound(1);        // 마지막 1의 iterator 반환
+
+for(multiset<int>::iterator it = itbegin; it != itEnd; ++it)
+{
+    cout << it->first << " " << it->second << endl;
+}
+```
