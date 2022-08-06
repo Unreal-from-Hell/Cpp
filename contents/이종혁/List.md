@@ -228,8 +228,8 @@ public:
 public:
     typedef Iterator<T> iterator;
 
-    iterator begin(){iterator(_header->_next);}
-    iterator end(){iterator(_header);}
+    iterator begin(){return iterator(_header->_next);}
+    iterator end(){return iterator(_header);}
 
     iterator insert(iterator it, const T& value)
     {
