@@ -61,6 +61,10 @@
  - [STL Map, Set](./contents/이종혁/MapSet.md)
  - [STL Algorithm](./contents/이종혁/Algorithm.md)
  - [Modern C++](./contents/이종혁/ModernCpp.md)
+ - [우측 값 참조](./contents/이종혁/RvalueRef.md)
+ - [전달 참조](./contents/이종혁/ForwardingRef.md)
+ - [람다](./contents/이종혁/Lambda.md)
+ - [스마트 포인터](./contents/이종혁/SmartPointer.md)
 
 ### [박주한](./contents/박주한)
 * [데이터~함수](./contents/박주한/CPP-~Pointer.md)
