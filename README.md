@@ -60,6 +60,7 @@
  - [STL deque](./contents/이종혁/Deque.md)
  - [STL Map, Set](./contents/이종혁/MapSet.md)
  - [STL Algorithm](./contents/이종혁/Algorithm.md)
+ - [Modern C++](./contents/이종혁/ModernCpp.md)
 
 ### [박주한](./contents/박주한)
 * [데이터~함수](./contents/박주한/CPP-~Pointer.md)
