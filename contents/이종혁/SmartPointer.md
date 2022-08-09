@@ -43,10 +43,20 @@
 
 <br>
 
-### ***서로가 상대방을 참조하게 되면 순환 참조가 발생한다***
-> 순환 참조가 발생하면 참조 횟수는 절대 9이 되지 않으므로 메모리는 영원히 해제되지 않는다
+### shared_ptr 의 사용
+> make_shared<TYPE>() 함수를 이용하여 인스턴스를 생성할 수 있다
 
 <br>
+
+``` cpp
+shared_ptr<Knight> sptr = make_shared<Knight>();
+
+sptr.use_count();     // 참조 횟수를 반환하는 함수
+sptr.reset();         // shared_ptr 해제
+```
+
+### ***서로가 상대방을 참조하게 되면 순환 참조가 발생한다***
+> 순환 참조가 발생하면 참조 횟수는 절대 0이 되지 않으므로 메모리는 영원히 해제되지 않는다
 
 ---
 <br>
@@ -56,7 +66,41 @@
 
  * shared_ptr의 순환 참조를 제거하기 위해 사용된다
 
+<br>
+
+### weak_ptr 의 사용
+> waek_unique<TYPE>() 함수를 이용하여 인스턴스를 생성할 수 있다
+
+<br>
+
+``` cpp
+weak_ptr<Knight> wptr;
+
+if(target.expired() == false)       // 포인터가 유효한지 검사
+{
+    // 유효하다면 lock() 함수를 사용해 shared_ptr로 반환하여 사용
+    shared_ptr<Knight> sptr = wptr.lock();
+}
+```
+ * 생명주기에서 자유로워지기 때문에 순환구조를 방지할 수 있다
+
 ---
 <br>
 
 ## Unique_ptr
+> 하나의 스마트 포인터만이 특정 개체를 소유할 수 있도록 객체에 소유권 개념을 도입한 스마트 포인터
+
+ * 해당 객체의 소유권을 가지고 있을 때만 소멸자가 해당 객체를 삭제할 수 있다
+ * unique_ptr 인스턴스는 복사가 불가능하고 move() 함수를 통해 소유권을 이전할 수 있다
+ * 소유권이 이전되면 이전 인스턴스는 해당 객체를 더이상 소유하지 않는다
+
+<br>
+
+### unique_ptr 의 사용
+> make_unique<TYPE>() 함수를 이용하여 인스턴스를 생성할 수 있다
+
+``` cpp
+unique_ptr<Knight> uptr = make_unique<Knight>();
+```
+
+ * 해당 함수를 사용하면 예외 발생에 대해 안전하게 대처할 수 있다
