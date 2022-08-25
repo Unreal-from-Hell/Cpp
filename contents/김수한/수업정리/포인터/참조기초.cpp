@@ -86,5 +86,5 @@ int main()
 
 	PrintInfoByCopy(info);
 	PrintInfoByPtr(&info);
-	PrintInfoByCopy(info);
+	PrintInfoByRef(info);
 }
